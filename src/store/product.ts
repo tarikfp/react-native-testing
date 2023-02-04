@@ -19,6 +19,7 @@ export interface ProductStore {
     getProductById: (productId: number) => Product | undefined;
     increaseFavoritedProductQuantity: (productId: number) => void;
     decreaseFavoritedProductQuantity: (productId: number) => void;
+    resetFavoritedProducts: () => void;
   };
 }
 
@@ -50,6 +51,7 @@ export const useProductStore = create<ProductStore>((set, get) => ({
         ),
       });
     },
+    resetFavoritedProducts: () => set({favoritedProducts: []}),
     decreaseFavoritedProductQuantity: productId => {
       set({
         favoritedProducts: decreaseFavoritedProductQuantity(

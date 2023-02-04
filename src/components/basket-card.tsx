@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import {FavoritedProduct} from '../store/product';
-import {COMMON_STYLES} from '../theme/common-styles';
 import {getWindowHeight, getWindowWidth} from '../utils/layout';
 import QuantityToggler from './quantity-toggler';
 
@@ -9,7 +8,7 @@ type BasketCardProps = FavoritedProduct &
   React.ComponentProps<typeof QuantityToggler>;
 
 const BasketCard: React.FC<BasketCardProps> = ({
-  product: {title, image},
+  product: {title, image, price},
   ...quantityTogglerProps
 }) => {
   return (
@@ -20,9 +19,12 @@ const BasketCard: React.FC<BasketCardProps> = ({
           style={styles.image}
           source={{uri: image}}
         />
-        <Text style={COMMON_STYLES.flex} numberOfLines={1}>
-          {title}
-        </Text>
+        <View style={styles.midContainer}>
+          <Text numberOfLines={1}>{title}</Text>
+          <Text style={styles.priceText} numberOfLines={1}>
+            $ {price}
+          </Text>
+        </View>
       </View>
 
       <QuantityToggler
@@ -51,9 +53,9 @@ const styles = StyleSheet.create({
   body: {
     flex: 1,
     flexDirection: 'row',
+    height: '100%',
     alignItems: 'center',
     marginRight: 12,
-    justifyContent: 'space-between',
   },
   image: {
     width: getWindowWidth(8),
@@ -70,5 +72,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#e2e2e2',
     borderRadius: 8,
     padding: 2,
+  },
+  midContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    height: '100%',
+  },
+  priceText: {
+    marginTop: 4,
   },
 });

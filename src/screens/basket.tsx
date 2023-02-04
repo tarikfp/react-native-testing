@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unstable-nested-components */
 import {DefaultTheme} from '@react-navigation/native';
 import * as React from 'react';
 import {
@@ -7,8 +8,8 @@ import {
   Text,
   View,
 } from 'react-native';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import BasketCard from '../components/basket-card';
+import DeleteIcon from '../components/delete-icon';
 import Spacing from '../components/spacing';
 import {ProductListScreenProps} from '../navigation/types';
 import {
@@ -27,15 +28,23 @@ const getBasketTotalPrice = (favoritedProducts: Array<FavoritedProduct>) => {
 
 type Props = ProductListScreenProps;
 
-const BasketScreen: React.FC<Props> = () => {
+const BasketScreen: React.FC<Props> = ({navigation}) => {
   const {
     increaseFavoritedProductQuantity,
     decreaseFavoritedProductQuantity,
     removeFavoritedProduct,
+    resetFavoritedProducts,
   } = useProductActions();
 
   const favoritedProducts = useFavoriteProducts();
-  const {bottom} = useSafeAreaInsets();
+
+  React.useLayoutEffect(() => {
+    if (favoritedProducts.length > 0) {
+      navigation.setOptions({
+        headerRight: () => <DeleteIcon onPress={resetFavoritedProducts} />,
+      });
+    }
+  }, [favoritedProducts.length, navigation, resetFavoritedProducts]);
 
   const renderBasketItem = ({
     item: {product, quantity},

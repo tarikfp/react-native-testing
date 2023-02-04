@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {NavigationContainer} from '@react-navigation/native';
+import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {QueryClient, QueryClientProvider} from 'react-query';
@@ -14,7 +14,11 @@ export default function App() {
     <QueryClientProvider client={queryClient}>
       <GestureHandlerRootView style={COMMON_STYLES.flex}>
         <SafeAreaProvider>
-          <NavigationContainer>
+          <NavigationContainer
+            theme={{
+              ...DefaultTheme,
+              colors: {...DefaultTheme.colors, primary: 'darkslateblue'},
+            }}>
             <ProductStack />
           </NavigationContainer>
         </SafeAreaProvider>
