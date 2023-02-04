@@ -1,21 +1,24 @@
 import {create} from 'zustand';
 import {shallow} from 'zustand/shallow';
 import {Product} from '../api/product';
+import {
+  decreaseFavoritedProductQuantity,
+  increaseFavoritedProductQuantity,
+} from './helpers';
 
-type FavoritedProducts = Array<{product: Product; quantity: number}>;
-
-type UpdateProductQuantityType = 'increase' | 'decrease';
+export type FavoritedProduct = {
+  product: Product;
+  quantity: number;
+};
 
 export interface ProductStore {
-  favoritedProducts: FavoritedProducts;
+  favoritedProducts: Array<FavoritedProduct>;
   actions: {
     addFavoriteProduct: (val: Product) => void;
     removeFavoritedProduct: (productId: number) => void;
-    updateProductQuantity: (
-      productId: number,
-      updateType: UpdateProductQuantityType,
-    ) => void;
     getProductById: (productId: number) => Product | undefined;
+    increaseFavoritedProductQuantity: (productId: number) => void;
+    decreaseFavoritedProductQuantity: (productId: number) => void;
   };
 }
 
@@ -39,33 +42,35 @@ export const useProductStore = create<ProductStore>((set, get) => ({
       }),
     getProductById: productId =>
       get().favoritedProducts.find(x => x.product.id === productId)?.product,
-    updateProductQuantity: (productId, updateType) => {
-      updateProductQuantity(get().favoritedProducts, productId, updateType);
+    increaseFavoritedProductQuantity: productId => {
+      set({
+        favoritedProducts: increaseFavoritedProductQuantity(
+          get().favoritedProducts,
+          productId,
+        ),
+      });
+    },
+    decreaseFavoritedProductQuantity: productId => {
+      set({
+        favoritedProducts: decreaseFavoritedProductQuantity(
+          get().favoritedProducts,
+          productId,
+        ),
+      });
     },
   },
 }));
+
+export const useProductActions = () => useProductStore(state => state.actions);
 
 export const useFavoriteProducts = () =>
   useProductStore(state => state.favoritedProducts, shallow);
 export const useFavoritedProductsCount = () =>
   useProductStore(state => state.favoritedProducts.length);
-export const useProductActions = () => useProductStore(state => state.actions);
-
-const updateProductQuantity = (
-  favoritedProducts: FavoritedProducts,
-  productId: number,
-  updateType: UpdateProductQuantityType,
-) => {
-  return favoritedProducts.map(favoritedProduct => {
-    if (favoritedProduct.product.id === productId) {
-      return {
-        ...favoritedProduct,
-        quantity:
-          updateType === 'increase'
-            ? favoritedProduct.quantity + 1
-            : favoritedProduct.quantity - 1,
-      };
-    }
-    return favoritedProduct;
-  });
-};
+export const useProductQuantity = (productId: number | undefined) =>
+  useProductStore(
+    state =>
+      state.favoritedProducts.find(
+        favoritedProduct => favoritedProduct.product.id === productId,
+      )?.quantity,
+  );

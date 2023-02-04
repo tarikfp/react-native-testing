@@ -11,7 +11,7 @@ const ErrorScreen: React.FC<Props> = ({resetError}) => {
       <View style={styles.flexCenter}>
         <Text style={styles.errorText}>An error occurred...</Text>
       </View>
-      <Button color={'cyan'} onPress={resetError} title="Go home" />
+      <Button color={'darkslateblue'} onPress={resetError} title="Go home" />
     </View>
   );
 };

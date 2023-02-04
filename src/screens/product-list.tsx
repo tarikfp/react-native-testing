@@ -5,6 +5,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {Product, useGetAllProducts} from '../api/product';
 import ProductListCard from '../components/product-list-card';
 import ScreenLoading from '../components/screen-loading';
+import useRefreshByUser from '../hooks/useRefreshByUser';
 import {RouteNames} from '../navigation/route-names';
 import {ProductListScreenProps} from '../navigation/types';
 import {useFavoriteProducts, useProductActions} from '../store/product';
@@ -13,7 +14,8 @@ import {COMMON_STYLES} from '../theme/common-styles';
 type Props = ProductListScreenProps;
 
 const ProductListScreen: React.FC<Props> = ({navigation}) => {
-  const {data, isLoading, isRefetching, refetch} = useGetAllProducts();
+  const {data, isLoading, refetch} = useGetAllProducts();
+  const {isRefetchingByUser, refetchByUser} = useRefreshByUser(refetch);
 
   const {addFavoriteProduct, removeFavoritedProduct} = useProductActions();
   const favoritedProducts = useFavoriteProducts();
@@ -49,7 +51,10 @@ const ProductListScreen: React.FC<Props> = ({navigation}) => {
     <SafeAreaView style={COMMON_STYLES.flex} edges={['bottom']}>
       <ScrollView
         refreshControl={
-          <RefreshControl refreshing={isRefetching} onRefresh={refetch} />
+          <RefreshControl
+            refreshing={isRefetchingByUser}
+            onRefresh={refetchByUser}
+          />
         }
         contentContainerStyle={styles.contentContainerStyle}
         showsVerticalScrollIndicator={false}

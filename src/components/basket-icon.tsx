@@ -20,7 +20,7 @@ const BasketIcon: React.FC<Props> = ({onPress, productCount}) => {
         disabled
         name="basket"
         color="darkslateblue"
-        size={32}
+        size={28}
       />
     </Pressable>
   );
@@ -34,13 +34,13 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
   productCountTextContainer: {
-    top: -10,
+    top: -5,
     backgroundColor: 'darkslateblue',
     borderRadius: 999,
-    height: 18,
+    height: 16,
     justifyContent: 'center',
     alignItems: 'center',
-    width: 18,
+    width: 16,
     right: -10,
     position: 'absolute',
   },

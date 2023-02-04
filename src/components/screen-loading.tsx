@@ -5,7 +5,7 @@ import {COMMON_STYLES} from '../theme/common-styles';
 const ScreenLoading: React.FC = () => {
   return (
     <View style={COMMON_STYLES.flexCenter}>
-      <ActivityIndicator size={'large'} color="cyan" />
+      <ActivityIndicator size={'large'} color="darkslateblue" />
     </View>
   );
 };

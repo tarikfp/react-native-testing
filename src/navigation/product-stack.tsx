@@ -1,12 +1,14 @@
 /* eslint-disable react/no-unstable-nested-components */
-import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
+import {HeaderBackButton} from '@react-navigation/elements';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import BasketIcon from '../components/basket-icon';
+import CloseIcon from '../components/close-icon';
 import {BasketScreen, ProductDetailScreen, ProductListScreen} from '../screens';
 import {useFavoritedProductsCount} from '../store/product';
 import {RouteNames} from './route-names';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 export default function ProductStack() {
   const favoritedProductsCount = useFavoritedProductsCount();
@@ -14,7 +16,7 @@ export default function ProductStack() {
   return (
     <Stack.Navigator
       screenOptions={{
-        ...TransitionPresets.SlideFromRightIOS,
+        animation: 'slide_from_right',
       }}
       initialRouteName={RouteNames.productList}>
       <Stack.Screen
@@ -32,14 +34,25 @@ export default function ProductStack() {
         component={ProductListScreen as React.ComponentType}
       />
       <Stack.Screen
-        options={{}}
+        options={{
+          headerTitle: 'Loading...',
+        }}
         name={RouteNames.productDetail}
         component={ProductDetailScreen as React.ComponentType}
       />
       <Stack.Screen
-        options={{
-          ...TransitionPresets.ModalPresentationIOS,
-        }}
+        options={({navigation}) => ({
+          animation: 'fade_from_bottom',
+          headerTitle: 'Basket',
+          headerLeft: headerLeftProps => (
+            <HeaderBackButton
+              {...headerLeftProps}
+              backImage={({tintColor}) => (
+                <CloseIcon onPress={navigation.goBack} color={tintColor} />
+              )}
+            />
+          ),
+        })}
         name={RouteNames.basket}
         component={BasketScreen as React.ComponentType}
       />

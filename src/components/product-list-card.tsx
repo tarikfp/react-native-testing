@@ -27,7 +27,7 @@ const ProductListCard: React.FC<Props> = ({
       <Pressable style={styles.heartIcon} onPress={onFavoritePress}>
         <MaterialCommunityIcons
           size={24}
-          color={isFavorited ? 'red' : 'grey'}
+          color={isFavorited ? 'darkslateblue' : 'grey'}
           name={isFavorited ? 'heart' : 'heart-outline'}
         />
       </Pressable>
@@ -37,7 +37,9 @@ const ProductListCard: React.FC<Props> = ({
       <Text numberOfLines={1} style={styles.title}>
         {title}
       </Text>
+
       <Text style={styles.price}>${price}</Text>
+
       <Text style={styles.price}>
         {rating.rate} ({rating.count})
       </Text>
@@ -45,7 +47,7 @@ const ProductListCard: React.FC<Props> = ({
   );
 };
 
-export default React.memo(ProductListCard);
+export default ProductListCard;
 
 const styles = StyleSheet.create({
   root: {
@@ -64,6 +66,7 @@ const styles = StyleSheet.create({
   image: {
     height: getWindowHeight(15),
     width: getWindowWidth(35),
+    marginTop: 6,
   },
   title: {
     fontSize: 16,
