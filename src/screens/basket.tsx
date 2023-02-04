@@ -7,7 +7,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import BasketCard from '../components/basket-card';
 import Spacing from '../components/spacing';
 import {ProductListScreenProps} from '../navigation/types';
@@ -33,7 +33,9 @@ const BasketScreen: React.FC<Props> = () => {
     decreaseFavoritedProductQuantity,
     removeFavoritedProduct,
   } = useProductActions();
+
   const favoritedProducts = useFavoriteProducts();
+  const {bottom} = useSafeAreaInsets();
 
   const renderBasketItem = ({
     item: {product, quantity},
@@ -68,18 +70,7 @@ const BasketScreen: React.FC<Props> = () => {
   );
 
   return (
-    <SafeAreaView
-      style={[
-        styles.safeArea,
-        // eslint-disable-next-line react-native/no-inline-styles
-        {
-          backgroundColor:
-            favoritedProducts.length === 0
-              ? DefaultTheme.colors.background
-              : '#fff',
-        },
-      ]}
-      edges={['bottom']}>
+    <View style={COMMON_STYLES.flex}>
       <FlatList
         data={favoritedProducts}
         contentContainerStyle={styles.contentContainerStyle}
@@ -98,7 +89,7 @@ const BasketScreen: React.FC<Props> = () => {
           </Text>
         </View>
       )}
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -122,13 +113,13 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   summaryContainer: {
-    height: getWindowHeight(7.5),
+    height: getWindowHeight(10),
     width: '100%',
     borderTopColor: '#e2e2e2',
     borderTopWidth: 1,
     backgroundColor: '#fff',
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'space-between',
     padding: COMMON_STYLES.screenPadding,
   },
