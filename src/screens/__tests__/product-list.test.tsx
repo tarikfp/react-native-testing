@@ -83,8 +83,8 @@ describe('Product list screen', () => {
   });
 
   it('should add/remove product item correctly on pressing favorite icon', async () => {
-    // we need to render whole app stack in order to be able to get header basket icon by its test id
-    const {getByTestId, queryByTestId} = render(rootAppComponent, {
+    // we need to render entire app stack in order to be able to get header basket icon by its test id
+    render(rootAppComponent, {
       wrapper: createReactQueryWrapper,
     });
 
@@ -99,11 +99,11 @@ describe('Product list screen', () => {
     await waitFor(() => result.current.isSuccess);
 
     const firstProductItemFavoritePressable =
-      getByTestId(`favorite-pressable-1`);
+      screen.getByTestId(`favorite-pressable-1`);
 
     fireEvent.press(firstProductItemFavoritePressable);
 
-    expect(getByTestId('basket-icon-quantity-text-1')).toBeTruthy();
+    expect(screen.getByTestId('basket-icon-quantity-text-1')).toBeTruthy();
 
     expect(productStore.current.favoritedProducts).toHaveLength(1);
 
@@ -116,7 +116,9 @@ describe('Product list screen', () => {
     // press again to remove item from favorited products
     fireEvent.press(firstProductItemFavoritePressable);
 
-    expect(queryByTestId('basket-icon-quantity-text-1')).not.toBeTruthy();
+    expect(
+      screen.queryByTestId('basket-icon-quantity-text-1'),
+    ).not.toBeTruthy();
 
     expect(productStore.current.favoritedProducts).toHaveLength(0);
   });

@@ -44,6 +44,7 @@ export default function ProductStack() {
         options={({navigation}) => ({
           animation: 'fade_from_bottom',
           headerTitle: 'Basket',
+          // Back button subview is not yet Fabric compatible in react-native-screens
           headerLeft: headerLeftProps => (
             <HeaderBackButton
               {...headerLeftProps}

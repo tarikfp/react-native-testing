@@ -1,10 +1,18 @@
+import {DefaultTheme} from '@react-navigation/native';
 import * as React from 'react';
-import {RefreshControl, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {
+  FlatList,
+  ListRenderItemInfo,
+  RefreshControl,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-
 import {Product, useGetAllProducts} from '../api/product';
 import ProductListCard from '../components/product-list-card';
 import ScreenLoading from '../components/screen-loading';
+import Spacing from '../components/spacing';
 import useRefreshByUser from '../hooks/useRefreshByUser';
 import {RouteNames} from '../navigation/route-names';
 import {ProductListScreenProps} from '../navigation/types';
@@ -44,6 +52,30 @@ const ProductListScreen: React.FC<Props> = ({navigation}) => {
     [navigation],
   );
 
+  const renderItemSeparator = () => (
+    <Spacing
+      backgroundColor={DefaultTheme.colors.background}
+      height={COMMON_STYLES.screenPadding}
+    />
+  );
+
+  const renderItem = ({item: product}: ListRenderItemInfo<Product>) => {
+    return (
+      <ProductListCard
+        {...product}
+        testID={`product-list-card-${product.id}`}
+        favoritePressableTestID={`favorite-pressable-${product.id}`}
+        isFavorited={
+          typeof favoritedProducts.find(
+            favoritedProduct => favoritedProduct.product.id === product.id,
+          ) !== 'undefined'
+        }
+        onFavoritePress={onFavoriteProductPress(product)}
+        onPress={onProductCardPress(product.id)}
+      />
+    );
+  };
+
   if (isLoading) {
     return <ScreenLoading />;
   }
@@ -56,37 +88,25 @@ const ProductListScreen: React.FC<Props> = ({navigation}) => {
         </View>
       )}
 
-      <ScrollView
-        testID="product-list-scroll-view"
-        refreshControl={
-          <RefreshControl
-            refreshing={isRefetchingByUser}
-            onRefresh={refetchByUser}
-          />
-        }
-        contentContainerStyle={styles.contentContainerStyle}
-        showsVerticalScrollIndicator={false}
-        style={styles.root}>
-        <View style={styles.productsContainer}>
-          {isSuccess &&
-            data?.map(product => (
-              <ProductListCard
-                key={product.id}
-                {...product}
-                testID={`product-list-card-${product.id}`}
-                favoritePressableTestID={`favorite-pressable-${product.id}`}
-                isFavorited={
-                  typeof favoritedProducts.find(
-                    favoritedProduct =>
-                      favoritedProduct.product.id === product.id,
-                  ) !== 'undefined'
-                }
-                onFavoritePress={onFavoriteProductPress(product)}
-                onPress={onProductCardPress(product.id)}
-              />
-            ))}
-        </View>
-      </ScrollView>
+      {isSuccess && (
+        <FlatList<Product>
+          data={data}
+          testID="product-list-scroll-view"
+          refreshControl={
+            <RefreshControl
+              refreshing={isRefetchingByUser}
+              onRefresh={refetchByUser}
+            />
+          }
+          renderItem={renderItem}
+          numColumns={2}
+          ItemSeparatorComponent={renderItemSeparator}
+          columnWrapperStyle={styles.columnWrapper}
+          contentContainerStyle={styles.contentContainerStyle}
+          showsVerticalScrollIndicator={false}
+          style={styles.root}
+        />
+      )}
     </SafeAreaView>
   );
 };
@@ -101,12 +121,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     padding: COMMON_STYLES.screenPadding,
   },
-  productsContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    width: '100%',
-    flexWrap: 'wrap',
+  columnWrapper: {
     justifyContent: 'space-between',
-    rowGap: COMMON_STYLES.screenPadding,
   },
 });

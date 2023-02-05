@@ -19,6 +19,7 @@ import {ProductDetailScreenProps} from '../navigation/types';
 import {useProductActions, useProductQuantity} from '../store/product';
 import {COMMON_STYLES} from '../theme/common-styles';
 import {cutString} from '../utils/cut-string';
+import {getPriceText} from '../utils/get-price-text';
 import {getWindowHeight, getWindowWidth} from '../utils/layout';
 
 const VERTICAL_SPACING = 24;
@@ -66,6 +67,7 @@ const ProductDetail: React.FC<Props> = ({navigation, route}) => {
         <Spacing height={8} />
 
         <Image
+          testID="product-detail-image"
           style={styles.image}
           resizeMode="contain"
           source={{uri: data?.image}}
@@ -79,7 +81,9 @@ const ProductDetail: React.FC<Props> = ({navigation, route}) => {
           <Spacing height={VERTICAL_SPACING} />
 
           <View style={styles.quantityTogglerContainer}>
-            <Text style={styles.infoText}>{`$ ${data?.price}`}</Text>
+            <Text testID="product-detail-price" style={styles.infoText}>
+              {getPriceText(data!.price)}
+            </Text>
             <QuantityToggler
               style={styles.quantityToggler}
               quantity={productQuantity ?? 0}
@@ -113,7 +117,7 @@ const ProductDetail: React.FC<Props> = ({navigation, route}) => {
       </ScrollView>
 
       <Button
-        color={'darkslateblue'}
+        color="darkslateblue"
         title="Go to basket"
         onPress={() => navigation.navigate(RouteNames.basket)}
       />
