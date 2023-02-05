@@ -26,7 +26,9 @@ const VERTICAL_SPACING = 24;
 type Props = ProductDetailScreenProps;
 
 const ProductDetail: React.FC<Props> = ({navigation, route}) => {
-  const {data, isLoading, refetch} = useGetProductById(route.params.id);
+  const {data, isLoading, refetch, isSuccess, isError} = useGetProductById(
+    route.params.id,
+  );
 
   const {isRefetchingByUser, refetchByUser} = useRefreshByUser(refetch);
 
@@ -53,68 +55,76 @@ const ProductDetail: React.FC<Props> = ({navigation, route}) => {
 
   return (
     <SafeAreaView edges={['bottom']} style={styles.safeArea}>
-      <ScrollView
-        testID="product-detail-scroll-view"
-        refreshControl={
-          <RefreshControl
-            refreshing={isRefetchingByUser}
-            onRefresh={refetchByUser}
-          />
-        }
-        contentContainerStyle={styles.contentContainerStyle}
-        showsVerticalScrollIndicator={false}
-        style={COMMON_STYLES.flex}>
-        <Spacing height={8} />
-
-        <Image
-          testID="product-detail-image"
-          style={styles.image}
-          resizeMode="contain"
-          source={{uri: data?.image}}
-        />
-
-        <Spacing height={VERTICAL_SPACING} />
-
-        <View style={styles.infoContainer}>
-          <Text style={styles.title}>{data?.title}</Text>
-
-          <Spacing height={VERTICAL_SPACING} />
-
-          <View style={styles.quantityTogglerContainer}>
-            <Text testID="product-detail-price" style={styles.infoText}>
-              {getPriceText(data!.price)}
-            </Text>
-            <QuantityToggler
-              style={styles.quantityToggler}
-              quantity={productQuantity ?? 0}
-              onIncreaseQuantityPress={() => {
-                if (data?.id) {
-                  // item has not been added to basket yet
-                  if (typeof productQuantity === 'undefined') {
-                    addFavoriteProduct(data);
-                  } else {
-                    increaseFavoritedProductQuantity(data.id);
-                  }
-                }
-              }}
-              onDecreaseQuantityPress={() => {
-                if (data?.id) {
-                  // item has quantity of 1, means its time to remove the item from the basket
-                  if (productQuantity === 1) {
-                    removeFavoritedProduct(data.id);
-                  } else {
-                    decreaseFavoritedProductQuantity(data.id);
-                  }
-                }
-              }}
-            />
-          </View>
-
-          <Spacing height={VERTICAL_SPACING} />
-
-          <Text style={styles.infoText}>{data?.description}</Text>
+      {isError && (
+        <View style={COMMON_STYLES.flexCenter}>
+          <Text>An error occurred</Text>
         </View>
-      </ScrollView>
+      )}
+
+      {isSuccess && (
+        <ScrollView
+          testID="product-detail-scroll-view"
+          refreshControl={
+            <RefreshControl
+              refreshing={isRefetchingByUser}
+              onRefresh={refetchByUser}
+            />
+          }
+          contentContainerStyle={styles.contentContainerStyle}
+          showsVerticalScrollIndicator={false}
+          style={COMMON_STYLES.flex}>
+          <Spacing height={8} />
+
+          <Image
+            testID="product-detail-image"
+            style={styles.image}
+            resizeMode="contain"
+            source={{uri: data?.image}}
+          />
+
+          <Spacing height={VERTICAL_SPACING} />
+
+          <View style={styles.infoContainer}>
+            <Text style={styles.title}>{data?.title}</Text>
+
+            <Spacing height={VERTICAL_SPACING} />
+
+            <View style={styles.quantityTogglerContainer}>
+              <Text testID="product-detail-price" style={styles.infoText}>
+                {getPriceText(data!.price)}
+              </Text>
+              <QuantityToggler
+                style={styles.quantityToggler}
+                quantity={productQuantity ?? 0}
+                onIncreaseQuantityPress={() => {
+                  if (data?.id) {
+                    // item has not been added to basket yet
+                    if (typeof productQuantity === 'undefined') {
+                      addFavoriteProduct(data);
+                    } else {
+                      increaseFavoritedProductQuantity(data.id);
+                    }
+                  }
+                }}
+                onDecreaseQuantityPress={() => {
+                  if (data?.id) {
+                    // item has quantity of 1, means its time to remove the item from the basket
+                    if (productQuantity === 1) {
+                      removeFavoritedProduct(data.id);
+                    } else {
+                      decreaseFavoritedProductQuantity(data.id);
+                    }
+                  }
+                }}
+              />
+            </View>
+
+            <Spacing height={VERTICAL_SPACING} />
+
+            <Text style={styles.infoText}>{data?.description}</Text>
+          </View>
+        </ScrollView>
+      )}
 
       <Button
         color="darkslateblue"

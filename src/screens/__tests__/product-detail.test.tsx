@@ -2,6 +2,7 @@ import {renderHook} from '@testing-library/react-hooks';
 import {fireEvent, render, screen} from '@testing-library/react-native';
 import React from 'react';
 import {ProductDetailScreen} from '..';
+import {setupGetProductByIdFailedHandler} from '../../../__mocks__/msw/handlers';
 import {useGetProductById} from '../../api/product';
 import {RouteNames} from '../../navigation/route-names';
 import {useProductQuantity} from '../../store/product';
@@ -73,6 +74,20 @@ describe('Product detail screen', () => {
     expect(screen.getByText(result.current.data!.title)).toBeTruthy();
 
     expect(screen.getByText(result.current.data!.description)).toBeTruthy();
+  });
+
+  it('should display error text in case get all products query fails', async () => {
+    setupGetProductByIdFailedHandler();
+
+    render(component, {wrapper: createReactQueryWrapper});
+
+    const {result, waitFor} = renderHook(() => useGetProductById(productId), {
+      wrapper: createReactQueryWrapper,
+    });
+
+    await waitFor(() => result.current.isError);
+
+    expect(screen.getByText(`An error occurred`)).toBeTruthy();
   });
 
   it('should display price and quantity of the item correctly', async () => {
