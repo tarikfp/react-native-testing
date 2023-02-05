@@ -12,7 +12,11 @@ const BasketIcon: React.FC<Props> = ({onPress, productCount}) => {
     <Pressable onPress={onPress}>
       {productCount > 0 && (
         <View style={styles.productCountTextContainer}>
-          <Text style={styles.productCountText}>{productCount}</Text>
+          <Text
+            testID={`basket-icon-quantity-text-${productCount}`}
+            style={styles.productCountText}>
+            {productCount}
+          </Text>
         </View>
       )}
 

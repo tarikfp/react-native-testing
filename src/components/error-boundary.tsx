@@ -22,7 +22,7 @@ class ErrorBoundary extends React.Component<Props, State> {
   }
 
   public componentDidCatch(_error: Error, _errorInfo: React.ErrorInfo): void {
-    console.log(_error);
+    console.log('===>', _error);
   }
 
   private resetState = (): void => {

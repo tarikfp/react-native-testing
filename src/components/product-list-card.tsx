@@ -9,6 +9,8 @@ type Props = Product & {
   onPress: () => void;
   isFavorited?: boolean;
   onFavoritePress: () => void;
+  testID?: string;
+  favoritePressableTestID?: string;
 };
 
 const ProductListCard: React.FC<Props> = ({
@@ -18,13 +20,18 @@ const ProductListCard: React.FC<Props> = ({
   rating,
   onPress,
   onFavoritePress,
+  favoritePressableTestID,
   isFavorited = false,
+  testID,
 }) => {
   return (
-    <Pressable onPress={onPress} style={styles.root}>
+    <Pressable testID={testID} onPress={onPress} style={styles.root}>
       <Image style={styles.image} resizeMode="contain" source={{uri: image}} />
 
-      <Pressable style={styles.heartIcon} onPress={onFavoritePress}>
+      <Pressable
+        testID={favoritePressableTestID}
+        style={styles.heartIcon}
+        onPress={onFavoritePress}>
         <MaterialCommunityIcons
           size={24}
           color={isFavorited ? 'darkslateblue' : 'grey'}

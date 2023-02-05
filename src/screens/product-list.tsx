@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {RefreshControl, ScrollView, StyleSheet, View} from 'react-native';
+import {RefreshControl, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
 import {Product, useGetAllProducts} from '../api/product';
@@ -14,7 +14,8 @@ import {COMMON_STYLES} from '../theme/common-styles';
 type Props = ProductListScreenProps;
 
 const ProductListScreen: React.FC<Props> = ({navigation}) => {
-  const {data, isLoading, refetch} = useGetAllProducts();
+  const {data, isLoading, refetch, isError, isSuccess} = useGetAllProducts();
+
   const {isRefetchingByUser, refetchByUser} = useRefreshByUser(refetch);
 
   const {addFavoriteProduct, removeFavoritedProduct} = useProductActions();
@@ -49,7 +50,14 @@ const ProductListScreen: React.FC<Props> = ({navigation}) => {
 
   return (
     <SafeAreaView style={COMMON_STYLES.flex} edges={['bottom']}>
+      {isError && (
+        <View style={COMMON_STYLES.flexCenter}>
+          <Text>An error occurred</Text>
+        </View>
+      )}
+
       <ScrollView
+        testID="product-list-scroll-view"
         refreshControl={
           <RefreshControl
             refreshing={isRefetchingByUser}
@@ -60,20 +68,23 @@ const ProductListScreen: React.FC<Props> = ({navigation}) => {
         showsVerticalScrollIndicator={false}
         style={styles.root}>
         <View style={styles.productsContainer}>
-          {data?.map(product => (
-            <ProductListCard
-              key={product.id}
-              {...product}
-              isFavorited={
-                typeof favoritedProducts.find(
-                  favoritedProduct =>
-                    favoritedProduct.product.id === product.id,
-                ) !== 'undefined'
-              }
-              onFavoritePress={onFavoriteProductPress(product)}
-              onPress={onProductCardPress(product.id)}
-            />
-          ))}
+          {isSuccess &&
+            data?.map(product => (
+              <ProductListCard
+                key={product.id}
+                {...product}
+                testID={`product-list-card-${product.id}`}
+                favoritePressableTestID={`favorite-pressable-${product.id}`}
+                isFavorited={
+                  typeof favoritedProducts.find(
+                    favoritedProduct =>
+                      favoritedProduct.product.id === product.id,
+                  ) !== 'undefined'
+                }
+                onFavoritePress={onFavoriteProductPress(product)}
+                onPress={onProductCardPress(product.id)}
+              />
+            ))}
         </View>
       </ScrollView>
     </SafeAreaView>

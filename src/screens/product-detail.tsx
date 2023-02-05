@@ -53,6 +53,7 @@ const ProductDetail: React.FC<Props> = ({navigation, route}) => {
   return (
     <SafeAreaView edges={['bottom']} style={styles.safeArea}>
       <ScrollView
+        testID="product-detail-scroll-view"
         refreshControl={
           <RefreshControl
             refreshing={isRefetchingByUser}
