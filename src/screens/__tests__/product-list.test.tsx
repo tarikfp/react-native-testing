@@ -22,7 +22,19 @@ const route = jest.fn() as any;
 const component = <ProductListScreen navigation={navigation} route={route} />;
 
 describe('Product list screen', () => {
-  it('should return product list data correctly', async () => {
+  it('should display loading indicator on mount', async () => {
+    render(component, {wrapper: createReactQueryWrapper});
+
+    expect(screen.queryByTestId(`screen-loader`)).toBeTruthy();
+
+    const {result, waitFor} = renderHook(() => useGetAllProducts(), {
+      wrapper: createReactQueryWrapper,
+    });
+
+    await waitFor(() => result.current.isSuccess);
+  });
+
+  it('should display product list data correctly', async () => {
     render(component, {wrapper: createReactQueryWrapper});
 
     expect(screen.queryByTestId(`product-list-card-1`)).not.toBeTruthy();
@@ -71,6 +83,7 @@ describe('Product list screen', () => {
   });
 
   it('should add/remove product item correctly on pressing favorite icon', async () => {
+    // we need to render whole app stack in order to be able to get header basket icon by its test id
     const {getByTestId, queryByTestId} = render(rootAppComponent, {
       wrapper: createReactQueryWrapper,
     });

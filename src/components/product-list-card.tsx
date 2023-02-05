@@ -2,6 +2,7 @@ import * as React from 'react';
 import {Image, Pressable, StyleSheet, Text} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Product} from '../api/product/types';
+import {getPriceText} from '../utils/get-price-text';
 import {getWindowHeight, getWindowWidth} from '../utils/layout';
 import Spacing from './spacing';
 
@@ -45,7 +46,7 @@ const ProductListCard: React.FC<Props> = ({
         {title}
       </Text>
 
-      <Text style={styles.price}>${price}</Text>
+      <Text style={styles.price}>{getPriceText(price)}</Text>
 
       <Text style={styles.price}>
         {rating.rate} ({rating.count})

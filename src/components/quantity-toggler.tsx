@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {
-  Pressable,
   StyleProp,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
   ViewStyle,
 } from 'react-native';
@@ -24,17 +24,26 @@ const QuantityToggler: React.FC<Props> = ({
 }) => {
   return (
     <View style={[styles.root, style]}>
-      <Pressable
+      <TouchableOpacity
+        activeOpacity={0.6}
+        disabled={quantity === 0}
+        testID="decrease-quantity-btn"
         onPress={onDecreaseQuantityPress}
         style={quantity === 0 ? styles.disabledActionBtn : styles.actionBtn}>
         <MaterialCommunityIcons name="minus" size={24} color="#fff" />
-      </Pressable>
+      </TouchableOpacity>
 
-      <Text style={styles.quantityText}>{quantity}</Text>
+      <Text testID="quantity-toggler-value" style={styles.quantityText}>
+        {quantity}
+      </Text>
 
-      <Pressable onPress={onIncreaseQuantityPress} style={styles.actionBtn}>
+      <TouchableOpacity
+        activeOpacity={0.6}
+        testID="increase-quantity-btn"
+        onPress={onIncreaseQuantityPress}
+        style={styles.actionBtn}>
         <MaterialCommunityIcons name="plus" size={24} color="#ffff" />
-      </Pressable>
+      </TouchableOpacity>
     </View>
   );
 };
