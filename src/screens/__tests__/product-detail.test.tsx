@@ -164,7 +164,7 @@ describe('Product detail screen', () => {
     );
   });
 
-  it('should call remove favorited product on pressing increase button in case product has already been added to basket and its quantity equals to 1', async () => {
+  it('should call remove favorited product on pressing decrease button in case product has already been added to basket and its quantity equals to 1', async () => {
     // product has been added to the basket
     (useProductQuantity as jest.Mock).mockImplementation(() => 1);
 
@@ -190,7 +190,7 @@ describe('Product detail screen', () => {
     );
   });
 
-  it('should call decrease favorited product on pressing increase button in case product has already been added to basket and its quantity greater than 1', async () => {
+  it('should call decrease favorited product on pressing decrease button in case product has already been added to basket and its quantity greater than 1', async () => {
     // product has been added to the basket and has quantity greater than 1
     (useProductQuantity as jest.Mock).mockImplementation(() => 2);
 

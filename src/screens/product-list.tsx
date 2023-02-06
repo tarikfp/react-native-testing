@@ -59,6 +59,8 @@ const ProductListScreen: React.FC<Props> = ({navigation}) => {
     />
   );
 
+  const getKeyExtractor = (item: Product) => item.id.toString();
+
   const renderItem = ({item: product}: ListRenderItemInfo<Product>) => {
     return (
       <ProductListCard
@@ -104,6 +106,7 @@ const ProductListScreen: React.FC<Props> = ({navigation}) => {
           columnWrapperStyle={styles.columnWrapper}
           contentContainerStyle={styles.contentContainerStyle}
           showsVerticalScrollIndicator={false}
+          keyExtractor={getKeyExtractor}
           style={styles.root}
         />
       )}

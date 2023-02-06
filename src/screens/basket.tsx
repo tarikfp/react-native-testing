@@ -18,13 +18,8 @@ import {
   useProductActions,
 } from '../store/product';
 import {COMMON_STYLES} from '../theme/common-styles';
+import {getBasketTotalPrice} from '../utils/get-basket-total-price';
 import {getWindowHeight} from '../utils/layout';
-
-const getBasketTotalPrice = (favoritedProducts: Array<FavoritedProduct>) => {
-  return favoritedProducts
-    .reduce((acc, curr) => acc + curr.product.price * curr.quantity, 0)
-    .toFixed(2);
-};
 
 type Props = ProductListScreenProps;
 
@@ -38,7 +33,7 @@ const BasketScreen: React.FC<Props> = ({navigation}) => {
 
   const favoritedProducts = useFavoriteProducts();
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     if (favoritedProducts.length > 0) {
       navigation.setOptions({
         headerRight: () => <DeleteIcon onPress={resetFavoritedProducts} />,
@@ -51,8 +46,8 @@ const BasketScreen: React.FC<Props> = ({navigation}) => {
   }: ListRenderItemInfo<FavoritedProduct>) => {
     return (
       <BasketCard
-        key={product.id}
         product={product}
+        testID={`basket-card-${product.id}`}
         quantity={quantity}
         onIncreaseQuantityPress={() =>
           increaseFavoritedProductQuantity(product.id)
@@ -72,6 +67,9 @@ const BasketScreen: React.FC<Props> = ({navigation}) => {
     <Spacing backgroundColor={DefaultTheme.colors.background} height={16} />
   );
 
+  const getKeyExtractor = (item: FavoritedProduct) =>
+    item.product.id.toString();
+
   const renderListEmptyComponent = () => (
     <View style={COMMON_STYLES.flexCenter}>
       <Text>Your basket is empty</Text>
@@ -82,11 +80,13 @@ const BasketScreen: React.FC<Props> = ({navigation}) => {
     <View style={COMMON_STYLES.flex}>
       <FlatList
         data={favoritedProducts}
+        testID="basket-screen-flat-list"
         contentContainerStyle={styles.contentContainerStyle}
         showsVerticalScrollIndicator={false}
         ListEmptyComponent={renderListEmptyComponent}
         ItemSeparatorComponent={renderSeparatorComponent}
         renderItem={renderBasketItem}
+        keyExtractor={getKeyExtractor}
         style={styles.root}
       />
 
