@@ -13,6 +13,8 @@ module.exports = {
     ],
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+  collectCoverage: true,
+  collectCoverageFrom: ['./src/screens/**/*.tsx'],
   setupFilesAfterEnv: [
     './jest.setup.ts',
     '@testing-library/jest-native/extend-expect',

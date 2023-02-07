@@ -16,7 +16,6 @@ const BasketCard: React.FC<BasketCardProps> = ({
   quantityTogglerUniqueID,
   ...quantityTogglerProps
 }) => {
-  console.log({testID});
   return (
     <View testID={testID} style={styles.root}>
       <View style={styles.body}>

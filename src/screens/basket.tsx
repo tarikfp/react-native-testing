@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unstable-nested-components */
 import {DefaultTheme} from '@react-navigation/native';
 import * as React from 'react';
 import {
