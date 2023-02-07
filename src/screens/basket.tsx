@@ -49,6 +49,7 @@ const BasketScreen: React.FC<Props> = ({navigation}) => {
         product={product}
         testID={`basket-card-${product.id}`}
         quantity={quantity}
+        quantityTogglerUniqueID={product.id.toString()}
         onIncreaseQuantityPress={() =>
           increaseFavoritedProductQuantity(product.id)
         }

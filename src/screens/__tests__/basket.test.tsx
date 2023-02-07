@@ -90,12 +90,22 @@ describe('Basket screen', () => {
     expect(setOptionsMock).toHaveBeenCalled();
   });
 
-  it('should display total price correctly', async () => {
+  it('should display basket total price correctly', async () => {
     render(component, {wrapper: createReactQueryWrapper});
 
     expect(
       screen.findByText(`$ ${getBasketTotalPrice(favoritedProducts)}`),
     ).toBeTruthy();
+  });
+
+  it('should not display basket total price when there is no items in the basket', async () => {
+    (useFavoriteProducts as jest.Mock).mockImplementation(() => []);
+
+    render(component, {wrapper: createReactQueryWrapper});
+
+    expect(
+      screen.queryByText(`$ ${getBasketTotalPrice(favoritedProducts)}`),
+    ).not.toBeTruthy();
   });
 
   it('should display empty basket when there is no item in the basket', async () => {
@@ -104,5 +114,67 @@ describe('Basket screen', () => {
     render(component, {wrapper: createReactQueryWrapper});
 
     expect(screen.findByText(`Your basket is empty`)).toBeTruthy();
+  });
+
+  it('should increase quantity on pressing increase button', async () => {
+    (useFavoriteProducts as jest.Mock).mockImplementation(
+      () => favoritedProducts,
+    );
+
+    render(component, {wrapper: createReactQueryWrapper});
+
+    fireEvent.press(screen.getByTestId(`increase-quantity-btn-1`));
+
+    expect(increaseFavoritedProductQuantityMock).toHaveBeenCalledWith(
+      favoritedProducts[0].product.id,
+    );
+  });
+
+  it('should remove the product from the basket if quantity of the product equals to 1', async () => {
+    (useFavoriteProducts as jest.Mock).mockImplementation(() =>
+      favoritedProducts.map(favoritedProduct => {
+        // set first product quantity to 1
+        if (favoritedProduct.product.id === 1) {
+          return {
+            ...favoritedProduct,
+            product: favoritedProduct.product,
+            quantity: 1,
+          };
+        }
+        return favoritedProduct;
+      }),
+    );
+
+    render(component, {wrapper: createReactQueryWrapper});
+
+    fireEvent.press(screen.getByTestId(`decrease-quantity-btn-1`));
+
+    expect(removeFavoritedProductMock).toHaveBeenCalledWith(
+      favoritedProducts[0].product.id,
+    );
+  });
+
+  it('should decrease the quantity of the product if its greater than 1', async () => {
+    (useFavoriteProducts as jest.Mock).mockImplementation(() =>
+      favoritedProducts.map(favoritedProduct => {
+        // set first product quantity to 2
+        if (favoritedProduct.product.id === 1) {
+          return {
+            ...favoritedProduct,
+            product: favoritedProduct.product,
+            quantity: 2,
+          };
+        }
+        return favoritedProduct;
+      }),
+    );
+
+    render(component, {wrapper: createReactQueryWrapper});
+
+    fireEvent.press(screen.getByTestId(`decrease-quantity-btn-1`));
+
+    expect(decreaseFavoritedProductQuantityMock).toHaveBeenCalledWith(
+      favoritedProducts[0].product.id,
+    );
   });
 });

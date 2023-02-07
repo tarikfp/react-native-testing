@@ -14,6 +14,7 @@ type Props = {
   onIncreaseQuantityPress: () => void;
   onDecreaseQuantityPress: () => void;
   style?: StyleProp<ViewStyle>;
+  uniqueID?: string;
 };
 
 const QuantityToggler: React.FC<Props> = ({
@@ -21,13 +22,18 @@ const QuantityToggler: React.FC<Props> = ({
   onDecreaseQuantityPress,
   onIncreaseQuantityPress,
   style,
+  uniqueID,
 }) => {
   return (
     <View style={[styles.root, style]}>
       <TouchableOpacity
+        testID={
+          uniqueID
+            ? `decrease-quantity-btn-${uniqueID}`
+            : 'decrease-quantity-btn'
+        }
         activeOpacity={0.6}
         disabled={quantity === 0}
-        testID="decrease-quantity-btn"
         onPress={onDecreaseQuantityPress}
         style={quantity === 0 ? styles.disabledActionBtn : styles.actionBtn}>
         <MaterialCommunityIcons name="minus" size={24} color="#fff" />
@@ -38,8 +44,12 @@ const QuantityToggler: React.FC<Props> = ({
       </Text>
 
       <TouchableOpacity
+        testID={
+          uniqueID
+            ? `increase-quantity-btn-${uniqueID}`
+            : 'increase-quantity-btn'
+        }
         activeOpacity={0.6}
-        testID="increase-quantity-btn"
         onPress={onIncreaseQuantityPress}
         style={styles.actionBtn}>
         <MaterialCommunityIcons name="plus" size={24} color="#ffff" />

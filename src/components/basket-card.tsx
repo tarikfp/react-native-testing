@@ -5,11 +5,15 @@ import {getWindowHeight, getWindowWidth} from '../utils/layout';
 import QuantityToggler from './quantity-toggler';
 
 type BasketCardProps = FavoritedProduct &
-  React.ComponentProps<typeof QuantityToggler> & {testID?: string};
+  React.ComponentProps<typeof QuantityToggler> & {
+    testID?: string;
+    quantityTogglerUniqueID?: string;
+  };
 
 const BasketCard: React.FC<BasketCardProps> = ({
   product: {title, image, price},
   testID,
+  quantityTogglerUniqueID,
   ...quantityTogglerProps
 }) => {
   console.log({testID});
@@ -31,6 +35,7 @@ const BasketCard: React.FC<BasketCardProps> = ({
 
       <QuantityToggler
         {...quantityTogglerProps}
+        uniqueID={quantityTogglerUniqueID}
         style={styles.quantityToggler}
       />
     </View>
