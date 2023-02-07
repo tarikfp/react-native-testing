@@ -1,130 +1,171 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1675805139678" clover="3.2.0">
-  <project timestamp="1675805139678" name="All files">
-    <metrics statements="112" coveredstatements="111" conditionals="26" coveredconditionals="26" methods="25" coveredmethods="24" elements="163" coveredelements="161" complexity="0" loc="112" ncloc="112" packages="1" files="4" classes="4"/>
-    <file name="basket.tsx" path="/Users/tarikpinarci/personal/Projects/react-native/side-projects/ReactNativeZustandRQ/src/screens/basket.tsx">
-      <metrics statements="32" coveredstatements="31" conditionals="5" coveredconditionals="5" methods="9" coveredmethods="8"/>
-      <line num="1" count="3" type="stmt"/>
-      <line num="2" count="3" type="stmt"/>
-      <line num="3" count="3" type="stmt"/>
-      <line num="10" count="3" type="stmt"/>
-      <line num="11" count="3" type="stmt"/>
-      <line num="12" count="3" type="stmt"/>
-      <line num="14" count="3" type="stmt"/>
-      <line num="19" count="3" type="stmt"/>
-      <line num="20" count="3" type="stmt"/>
-      <line num="21" count="3" type="stmt"/>
-      <line num="25" count="3" type="stmt"/>
-      <line num="31" count="8" type="stmt"/>
-      <line num="33" count="8" type="stmt"/>
-      <line num="35" count="8" type="stmt"/>
-      <line num="36" count="8" type="cond" truecount="1" falsecount="0"/>
-      <line num="37" count="6" type="stmt"/>
-      <line num="38" count="0" type="stmt"/>
-      <line num="43" count="8" type="stmt"/>
-      <line num="46" count="80" type="stmt"/>
-      <line num="53" count="1" type="stmt"/>
-      <line num="56" count="2" type="cond" truecount="2" falsecount="0"/>
-      <line num="57" count="1" type="stmt"/>
-      <line num="59" count="1" type="stmt"/>
-      <line num="66" count="8" type="stmt"/>
-      <line num="67" count="79" type="stmt"/>
-      <line num="70" count="8" type="stmt"/>
-      <line num="71" count="113" type="stmt"/>
-      <line num="73" count="8" type="stmt"/>
-      <line num="74" count="2" type="stmt"/>
-      <line num="79" count="8" type="stmt"/>
-      <line num="105" count="3" type="stmt"/>
-      <line num="107" count="3" type="stmt"/>
-    </file>
-    <file name="error.tsx" path="/Users/tarikpinarci/personal/Projects/react-native/side-projects/ReactNativeZustandRQ/src/screens/error.tsx">
-      <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <line num="1" count="3" type="stmt"/>
-      <line num="2" count="3" type="stmt"/>
-      <line num="8" count="3" type="stmt"/>
-      <line num="9" count="3" type="stmt"/>
-      <line num="19" count="3" type="stmt"/>
-      <line num="21" count="3" type="stmt"/>
-    </file>
-    <file name="product-detail.tsx" path="/Users/tarikpinarci/personal/Projects/react-native/side-projects/ReactNativeZustandRQ/src/screens/product-detail.tsx">
-      <metrics statements="37" coveredstatements="37" conditionals="14" coveredconditionals="14" methods="5" coveredmethods="5"/>
-      <line num="1" count="2" type="stmt"/>
-      <line num="2" count="2" type="stmt"/>
-      <line num="11" count="2" type="stmt"/>
-      <line num="12" count="2" type="stmt"/>
-      <line num="13" count="2" type="stmt"/>
-      <line num="14" count="2" type="stmt"/>
-      <line num="15" count="2" type="stmt"/>
-      <line num="16" count="2" type="stmt"/>
-      <line num="17" count="2" type="stmt"/>
-      <line num="19" count="2" type="stmt"/>
-      <line num="20" count="2" type="stmt"/>
-      <line num="21" count="2" type="stmt"/>
-      <line num="22" count="2" type="stmt"/>
-      <line num="23" count="2" type="stmt"/>
-      <line num="25" count="2" type="stmt"/>
-      <line num="28" count="2" type="stmt"/>
-      <line num="29" count="18" type="stmt"/>
-      <line num="33" count="18" type="stmt"/>
-      <line num="40" count="18" type="stmt"/>
-      <line num="42" count="18" type="stmt"/>
-      <line num="44" count="18" type="stmt"/>
-      <line num="45" count="17" type="cond" truecount="1" falsecount="0"/>
-      <line num="46" count="8" type="stmt"/>
-      <line num="52" count="18" type="cond" truecount="1" falsecount="0"/>
-      <line num="53" count="9" type="stmt"/>
-      <line num="56" count="9" type="stmt"/>
-      <line num="100" count="2" type="cond" truecount="1" falsecount="0"/>
-      <line num="102" count="2" type="cond" truecount="2" falsecount="0"/>
-      <line num="103" count="1" type="stmt"/>
-      <line num="105" count="1" type="stmt"/>
-      <line num="110" count="2" type="cond" truecount="1" falsecount="0"/>
-      <line num="112" count="2" type="cond" truecount="2" falsecount="0"/>
-      <line num="113" count="1" type="stmt"/>
-      <line num="115" count="1" type="stmt"/>
-      <line num="132" count="1" type="stmt"/>
-      <line num="138" count="2" type="stmt"/>
-      <line num="140" count="2" type="stmt"/>
-    </file>
-    <file name="product-list.tsx" path="/Users/tarikpinarci/personal/Projects/react-native/side-projects/ReactNativeZustandRQ/src/screens/product-list.tsx">
-      <metrics statements="37" coveredstatements="37" conditionals="7" coveredconditionals="7" methods="10" coveredmethods="10"/>
-      <line num="1" count="2" type="stmt"/>
-      <line num="2" count="2" type="stmt"/>
-      <line num="3" count="2" type="stmt"/>
-      <line num="11" count="2" type="stmt"/>
-      <line num="12" count="2" type="stmt"/>
-      <line num="13" count="2" type="stmt"/>
-      <line num="14" count="2" type="stmt"/>
-      <line num="15" count="2" type="stmt"/>
-      <line num="16" count="2" type="stmt"/>
-      <line num="17" count="2" type="stmt"/>
-      <line num="19" count="2" type="stmt"/>
-      <line num="20" count="2" type="stmt"/>
-      <line num="24" count="2" type="stmt"/>
-      <line num="25" count="12" type="stmt"/>
-      <line num="27" count="12" type="stmt"/>
-      <line num="29" count="12" type="stmt"/>
-      <line num="30" count="12" type="stmt"/>
-      <line num="32" count="12" type="stmt"/>
-      <line num="33" count="120" type="stmt"/>
-      <line num="35" count="2" type="cond" truecount="2" falsecount="0"/>
-      <line num="37" count="1" type="stmt"/>
-      <line num="40" count="1" type="stmt"/>
-      <line num="42" count="1" type="stmt"/>
-      <line num="48" count="12" type="stmt"/>
-      <line num="49" count="120" type="stmt"/>
-      <line num="50" count="1" type="stmt"/>
-      <line num="55" count="12" type="stmt"/>
-      <line num="56" count="54" type="stmt"/>
-      <line num="62" count="120" type="stmt"/>
-      <line num="64" count="12" type="stmt"/>
-      <line num="65" count="120" type="stmt"/>
-      <line num="72" count="20" type="stmt"/>
-      <line num="81" count="12" type="cond" truecount="1" falsecount="0"/>
-      <line num="82" count="5" type="stmt"/>
-      <line num="85" count="7" type="stmt"/>
-      <line num="117" count="2" type="stmt"/>
-      <line num="119" count="2" type="stmt"/>
-    </file>
+<coverage generated="1675811528681" clover="3.2.0">
+  <project timestamp="1675811528681" name="All files">
+    <metrics statements="141" coveredstatements="136" conditionals="29" coveredconditionals="29" methods="47" coveredmethods="41" elements="217" coveredelements="206" complexity="0" loc="141" ncloc="141" packages="2" files="6" classes="6"/>
+    <package name="screens">
+      <metrics statements="112" coveredstatements="111" conditionals="26" coveredconditionals="26" methods="25" coveredmethods="24"/>
+      <file name="basket.tsx" path="/Users/tarikpinarci/personal/Projects/react-native/side-projects/ReactNativeZustandRQ/src/screens/basket.tsx">
+        <metrics statements="32" coveredstatements="31" conditionals="5" coveredconditionals="5" methods="9" coveredmethods="8"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="10" count="3" type="stmt"/>
+        <line num="11" count="3" type="stmt"/>
+        <line num="12" count="3" type="stmt"/>
+        <line num="14" count="3" type="stmt"/>
+        <line num="19" count="3" type="stmt"/>
+        <line num="20" count="3" type="stmt"/>
+        <line num="21" count="3" type="stmt"/>
+        <line num="25" count="3" type="stmt"/>
+        <line num="31" count="8" type="stmt"/>
+        <line num="33" count="8" type="stmt"/>
+        <line num="35" count="8" type="stmt"/>
+        <line num="36" count="8" type="cond" truecount="1" falsecount="0"/>
+        <line num="37" count="6" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="43" count="8" type="stmt"/>
+        <line num="46" count="80" type="stmt"/>
+        <line num="53" count="1" type="stmt"/>
+        <line num="56" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="57" count="1" type="stmt"/>
+        <line num="59" count="1" type="stmt"/>
+        <line num="66" count="8" type="stmt"/>
+        <line num="67" count="79" type="stmt"/>
+        <line num="70" count="8" type="stmt"/>
+        <line num="71" count="113" type="stmt"/>
+        <line num="73" count="8" type="stmt"/>
+        <line num="74" count="2" type="stmt"/>
+        <line num="79" count="8" type="stmt"/>
+        <line num="105" count="3" type="stmt"/>
+        <line num="107" count="3" type="stmt"/>
+      </file>
+      <file name="error.tsx" path="/Users/tarikpinarci/personal/Projects/react-native/side-projects/ReactNativeZustandRQ/src/screens/error.tsx">
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="8" count="3" type="stmt"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="19" count="3" type="stmt"/>
+        <line num="21" count="3" type="stmt"/>
+      </file>
+      <file name="product-detail.tsx" path="/Users/tarikpinarci/personal/Projects/react-native/side-projects/ReactNativeZustandRQ/src/screens/product-detail.tsx">
+        <metrics statements="37" coveredstatements="37" conditionals="14" coveredconditionals="14" methods="5" coveredmethods="5"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="2" count="2" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="13" count="2" type="stmt"/>
+        <line num="14" count="2" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="16" count="2" type="stmt"/>
+        <line num="17" count="2" type="stmt"/>
+        <line num="19" count="2" type="stmt"/>
+        <line num="20" count="2" type="stmt"/>
+        <line num="21" count="2" type="stmt"/>
+        <line num="22" count="2" type="stmt"/>
+        <line num="23" count="2" type="stmt"/>
+        <line num="25" count="2" type="stmt"/>
+        <line num="28" count="2" type="stmt"/>
+        <line num="29" count="18" type="stmt"/>
+        <line num="33" count="18" type="stmt"/>
+        <line num="40" count="18" type="stmt"/>
+        <line num="42" count="18" type="stmt"/>
+        <line num="44" count="18" type="stmt"/>
+        <line num="45" count="17" type="cond" truecount="1" falsecount="0"/>
+        <line num="46" count="8" type="stmt"/>
+        <line num="52" count="18" type="cond" truecount="1" falsecount="0"/>
+        <line num="53" count="9" type="stmt"/>
+        <line num="56" count="9" type="stmt"/>
+        <line num="100" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="102" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="103" count="1" type="stmt"/>
+        <line num="105" count="1" type="stmt"/>
+        <line num="110" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="112" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="113" count="1" type="stmt"/>
+        <line num="115" count="1" type="stmt"/>
+        <line num="132" count="1" type="stmt"/>
+        <line num="138" count="2" type="stmt"/>
+        <line num="140" count="2" type="stmt"/>
+      </file>
+      <file name="product-list.tsx" path="/Users/tarikpinarci/personal/Projects/react-native/side-projects/ReactNativeZustandRQ/src/screens/product-list.tsx">
+        <metrics statements="37" coveredstatements="37" conditionals="7" coveredconditionals="7" methods="10" coveredmethods="10"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="2" count="2" type="stmt"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="13" count="2" type="stmt"/>
+        <line num="14" count="2" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="16" count="2" type="stmt"/>
+        <line num="17" count="2" type="stmt"/>
+        <line num="19" count="2" type="stmt"/>
+        <line num="20" count="2" type="stmt"/>
+        <line num="24" count="2" type="stmt"/>
+        <line num="25" count="12" type="stmt"/>
+        <line num="27" count="12" type="stmt"/>
+        <line num="29" count="12" type="stmt"/>
+        <line num="30" count="12" type="stmt"/>
+        <line num="32" count="12" type="stmt"/>
+        <line num="33" count="120" type="stmt"/>
+        <line num="35" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="37" count="1" type="stmt"/>
+        <line num="40" count="1" type="stmt"/>
+        <line num="42" count="1" type="stmt"/>
+        <line num="48" count="12" type="stmt"/>
+        <line num="49" count="120" type="stmt"/>
+        <line num="50" count="1" type="stmt"/>
+        <line num="55" count="12" type="stmt"/>
+        <line num="56" count="54" type="stmt"/>
+        <line num="62" count="120" type="stmt"/>
+        <line num="64" count="12" type="stmt"/>
+        <line num="65" count="120" type="stmt"/>
+        <line num="72" count="20" type="stmt"/>
+        <line num="81" count="12" type="cond" truecount="1" falsecount="0"/>
+        <line num="82" count="5" type="stmt"/>
+        <line num="85" count="7" type="stmt"/>
+        <line num="117" count="2" type="stmt"/>
+        <line num="119" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="store">
+      <metrics statements="29" coveredstatements="25" conditionals="3" coveredconditionals="3" methods="22" coveredmethods="17"/>
+      <file name="helpers.ts" path="/Users/tarikpinarci/personal/Projects/react-native/side-projects/ReactNativeZustandRQ/src/store/helpers.ts">
+        <metrics statements="9" coveredstatements="9" conditionals="3" coveredconditionals="3" methods="4" coveredmethods="4"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="8" count="7" type="stmt"/>
+        <line num="9" count="11" type="cond" truecount="1" falsecount="0"/>
+        <line num="10" count="7" type="stmt"/>
+        <line num="18" count="4" type="stmt"/>
+        <line num="22" count="3" type="stmt"/>
+        <line num="26" count="3" type="stmt"/>
+        <line num="29" count="3" type="stmt"/>
+        <line num="33" count="2" type="stmt"/>
+      </file>
+      <file name="product.ts" path="/Users/tarikpinarci/personal/Projects/react-native/side-projects/ReactNativeZustandRQ/src/store/product.ts">
+        <metrics statements="20" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="18" coveredmethods="13"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="2" count="2" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="26" count="2" type="stmt"/>
+        <line num="30" count="6" type="stmt"/>
+        <line num="37" count="2" type="stmt"/>
+        <line num="40" count="2" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="47" count="2" type="stmt"/>
+        <line num="54" count="1" type="stmt"/>
+        <line num="56" count="1" type="stmt"/>
+        <line num="66" count="14" type="stmt"/>
+        <line num="68" count="2" type="stmt"/>
+        <line num="69" count="14" type="stmt"/>
+        <line num="70" count="2" type="stmt"/>
+        <line num="71" count="5" type="stmt"/>
+        <line num="72" count="2" type="stmt"/>
+        <line num="73" count="0" type="stmt"/>
+        <line num="75" count="0" type="stmt"/>
+        <line num="76" count="0" type="stmt"/>
+      </file>
+    </package>
   </project>
 </coverage>

@@ -1,6 +1,6 @@
 import {FavoritedProduct} from './product';
 
-const updateProductQuantity = (
+export const updateProductQuantity = (
   favoritedProducts: Array<FavoritedProduct>,
   productId: number,
   updateType: 'increase' | 'decrease',
