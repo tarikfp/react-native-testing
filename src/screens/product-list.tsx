@@ -93,7 +93,7 @@ const ProductListScreen: React.FC<Props> = ({navigation}) => {
       {isSuccess && (
         <FlatList<Product>
           data={data}
-          testID="product-list-scroll-view"
+          testID="product-list-flat-list"
           refreshControl={
             <RefreshControl
               refreshing={isRefetchingByUser}

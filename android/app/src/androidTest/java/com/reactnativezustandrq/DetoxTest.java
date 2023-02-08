@@ -15,7 +15,7 @@ import androidx.test.rule.ActivityTestRule;
 @LargeTest
 public class DetoxTest {
     @Rule 
-    public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(MainApplication.class, false, false);
+    public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(MainActivity.class, false, false);
 
     @Test
     public void runDetoxTests() {
