@@ -9,7 +9,7 @@ type Props = {
 
 const BasketIcon: React.FC<Props> = ({onPress, productCount}) => {
   return (
-    <Pressable onPress={onPress}>
+    <Pressable testID="basket-icon" onPress={onPress}>
       {productCount > 0 && (
         <View style={styles.productCountTextContainer}>
           <Text
