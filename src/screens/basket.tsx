@@ -12,9 +12,9 @@ import DeleteIcon from '../components/delete-icon';
 import Spacing from '../components/spacing';
 import {ProductListScreenProps} from '../navigation/types';
 import {
-  FavoritedProduct,
-  useFavoriteProducts,
+  ProductInBasket,
   useProductActions,
+  useProductsInBasket,
 } from '../store/product';
 import {COMMON_STYLES} from '../theme/common-styles';
 import {getBasketTotalPrice} from '../utils/get-basket-total-price';
@@ -24,25 +24,25 @@ type Props = ProductListScreenProps;
 
 const BasketScreen: React.FC<Props> = ({navigation}) => {
   const {
-    increaseFavoritedProductQuantity,
-    decreaseFavoritedProductQuantity,
-    removeFavoritedProduct,
-    resetFavoritedProducts,
+    increaseProductQuantityInBasket,
+    decreaseProductQuantityInBasket,
+    removeProductFromBasket,
+    resetAllProductsInBasket,
   } = useProductActions();
 
-  const favoritedProducts = useFavoriteProducts();
+  const productsInBasket = useProductsInBasket();
 
   React.useEffect(() => {
-    if (favoritedProducts.length > 0) {
+    if (productsInBasket.length > 0) {
       navigation.setOptions({
-        headerRight: () => <DeleteIcon onPress={resetFavoritedProducts} />,
+        headerRight: () => <DeleteIcon onPress={resetAllProductsInBasket} />,
       });
     }
-  }, [favoritedProducts.length, navigation, resetFavoritedProducts]);
+  }, [productsInBasket.length, navigation, resetAllProductsInBasket]);
 
   const renderBasketItem = ({
     item: {product, quantity},
-  }: ListRenderItemInfo<FavoritedProduct>) => {
+  }: ListRenderItemInfo<ProductInBasket>) => {
     return (
       <BasketCard
         product={product}
@@ -50,13 +50,13 @@ const BasketScreen: React.FC<Props> = ({navigation}) => {
         quantity={quantity}
         quantityTogglerUniqueID={product.id.toString()}
         onIncreaseQuantityPress={() =>
-          increaseFavoritedProductQuantity(product.id)
+          increaseProductQuantityInBasket(product.id)
         }
         onDecreaseQuantityPress={() => {
           if (quantity === 1) {
-            removeFavoritedProduct(product.id);
+            removeProductFromBasket(product.id);
           } else {
-            decreaseFavoritedProductQuantity(product.id);
+            decreaseProductQuantityInBasket(product.id);
           }
         }}
       />
@@ -67,8 +67,7 @@ const BasketScreen: React.FC<Props> = ({navigation}) => {
     <Spacing backgroundColor={DefaultTheme.colors.background} height={16} />
   );
 
-  const getKeyExtractor = (item: FavoritedProduct) =>
-    item.product.id.toString();
+  const getKeyExtractor = (item: ProductInBasket) => item.product.id.toString();
 
   const renderListEmptyComponent = () => (
     <View style={COMMON_STYLES.flexCenter}>
@@ -79,7 +78,7 @@ const BasketScreen: React.FC<Props> = ({navigation}) => {
   return (
     <View style={COMMON_STYLES.flex}>
       <FlatList
-        data={favoritedProducts}
+        data={productsInBasket}
         testID="basket-screen-flat-list"
         contentContainerStyle={styles.contentContainerStyle}
         showsVerticalScrollIndicator={false}
@@ -90,11 +89,11 @@ const BasketScreen: React.FC<Props> = ({navigation}) => {
         style={styles.root}
       />
 
-      {favoritedProducts.length > 0 && (
+      {productsInBasket.length > 0 && (
         <View style={styles.summaryContainer}>
           <Text style={styles.totalPrice}>{'Total Price: '}</Text>
           <Text style={styles.priceText}>
-            $ {getBasketTotalPrice(favoritedProducts)}
+            $ {getBasketTotalPrice(productsInBasket)}
           </Text>
         </View>
       )}

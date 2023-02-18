@@ -1,7 +1,7 @@
-import {FavoritedProduct} from './product';
+import {ProductInBasket} from './product';
 
 export const updateProductQuantity = (
-  favoritedProducts: Array<FavoritedProduct>,
+  favoritedProducts: Array<ProductInBasket>,
   productId: number,
   updateType: 'increase' | 'decrease',
 ) => {
@@ -20,14 +20,14 @@ export const updateProductQuantity = (
 };
 
 export const increaseFavoritedProductQuantity = (
-  favoritedProducts: Array<FavoritedProduct>,
+  favoritedProducts: Array<ProductInBasket>,
   productId: number,
 ) => {
   return updateProductQuantity(favoritedProducts, productId, 'increase');
 };
 
 export const decreaseFavoritedProductQuantity = (
-  favoritedProducts: Array<FavoritedProduct>,
+  favoritedProducts: Array<ProductInBasket>,
   productId: number,
 ) => {
   return updateProductQuantity(favoritedProducts, productId, 'decrease');

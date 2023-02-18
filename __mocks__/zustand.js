@@ -1,5 +1,5 @@
 // https://docs.pmnd.rs/zustand/guides/testing#resetting-state-between-tests-in-react-dom
-const actualCreate = jest.requireActual('zustand'); // if using jest
+const {create: actualCreate} = jest.requireActual('zustand'); // if using jest
 import {act} from '@testing-library/react-native';
 
 // a variable to hold reset functions for all stores declared in the app

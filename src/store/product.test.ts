@@ -12,10 +12,10 @@ describe('useProductStore', () => {
     const product = {id: 1, title: 'Product 1'} as any;
 
     act(() => {
-      productStore.result.current.actions.addFavoriteProduct(product);
+      productStore.result.current.actions.addProductToBasket(product);
     });
 
-    expect(productStore.result.current.favoritedProducts).toEqual([
+    expect(productStore.result.current.productsInBasket).toEqual([
       {product, quantity: 1},
     ]);
   });
@@ -24,30 +24,30 @@ describe('useProductStore', () => {
     const product = {id: 1, title: 'Product 1'} as any;
 
     act(() => {
-      productStore.result.current.actions.addFavoriteProduct(product);
+      productStore.result.current.actions.addProductToBasket(product);
     });
 
     act(() => {
-      productStore.result.current.actions.removeFavoritedProduct(product.id);
+      productStore.result.current.actions.removeProductFromBasket(product.id);
     });
 
-    expect(productStore.result.current.favoritedProducts).toEqual([]);
+    expect(productStore.result.current.productsInBasket).toEqual([]);
   });
 
   it('increases the quantity of a favorited product', () => {
     const product = {id: 1, title: 'Product 1'} as any;
 
     act(() => {
-      productStore.result.current.actions.addFavoriteProduct(product);
+      productStore.result.current.actions.addProductToBasket(product);
     });
 
     act(() => {
-      productStore.result.current.actions.increaseFavoritedProductQuantity(
+      productStore.result.current.actions.increaseProductQuantityInBasket(
         product.id,
       );
     });
 
-    expect(productStore.result.current.favoritedProducts).toEqual([
+    expect(productStore.result.current.productsInBasket).toEqual([
       {product, quantity: 2},
     ]);
   });
@@ -56,22 +56,22 @@ describe('useProductStore', () => {
     const product = {id: 1, title: 'Product 1'} as any;
 
     act(() => {
-      productStore.result.current.actions.addFavoriteProduct(product);
+      productStore.result.current.actions.addProductToBasket(product);
     });
 
     act(() => {
-      productStore.result.current.actions.increaseFavoritedProductQuantity(
+      productStore.result.current.actions.increaseProductQuantityInBasket(
         product.id,
       );
     });
 
     act(() => {
-      productStore.result.current.actions.decreaseFavoritedProductQuantity(
+      productStore.result.current.actions.decreaseProductQuantityInBasket(
         product.id,
       );
     });
 
-    expect(productStore.result.current.favoritedProducts).toEqual([
+    expect(productStore.result.current.productsInBasket).toEqual([
       {product, quantity: 1},
     ]);
   });
@@ -80,13 +80,13 @@ describe('useProductStore', () => {
     const product = {id: 1, title: 'Product 1'} as any;
 
     act(() => {
-      productStore.result.current.actions.addFavoriteProduct(product);
+      productStore.result.current.actions.addProductToBasket(product);
     });
 
     act(() => {
-      productStore.result.current.actions.resetFavoritedProducts();
+      productStore.result.current.actions.resetAllProductsInBasket();
     });
 
-    expect(productStore.result.current.favoritedProducts).toEqual([]);
+    expect(productStore.result.current.productsInBasket).toEqual([]);
   });
 });

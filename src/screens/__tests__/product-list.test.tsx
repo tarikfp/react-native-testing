@@ -22,7 +22,7 @@ const route = jest.fn() as any;
 const component = <ProductListScreen navigation={navigation} route={route} />;
 
 describe('Product list screen', () => {
-  it('should display loading indicator on mount', async () => {
+  it.only('should display loading indicator initially', async () => {
     render(component, {wrapper: createReactQueryWrapper});
 
     expect(screen.queryByTestId(`screen-loader`)).toBeTruthy();
@@ -32,6 +32,8 @@ describe('Product list screen', () => {
     });
 
     await waitFor(() => result.current.isSuccess);
+
+    expect(screen.queryByTestId(`screen-loader`)).not.toBeTruthy();
   });
 
   it('should display product list data correctly', async () => {
@@ -82,7 +84,7 @@ describe('Product list screen', () => {
     });
   });
 
-  it('should add/remove product item correctly on pressing favorite icon', async () => {
+  it('should add/remove product item correctly on pressing basket icon', async () => {
     // we need to render entire app stack in order to be able to get header basket icon by its test id
     render(rootAppComponent, {
       wrapper: createReactQueryWrapper,
@@ -98,28 +100,27 @@ describe('Product list screen', () => {
 
     await waitFor(() => result.current.isSuccess);
 
-    const firstProductItemFavoritePressable =
-      screen.getByTestId(`favorite-pressable-1`);
+    const firstProductItemBasketButton = screen.getByTestId(`basket-button-1`);
 
-    fireEvent.press(firstProductItemFavoritePressable);
+    fireEvent.press(firstProductItemBasketButton);
 
     expect(screen.getByTestId('basket-icon-quantity-text-1')).toBeTruthy();
 
-    expect(productStore.current.favoritedProducts).toHaveLength(1);
+    expect(productStore.current.productsInBasket).toHaveLength(1);
 
-    expect(productStore.current.favoritedProducts[0].quantity).toBe(1);
+    expect(productStore.current.productsInBasket[0].quantity).toBe(1);
 
-    expect(productStore.current.favoritedProducts[0].product).toMatchObject(
+    expect(productStore.current.productsInBasket[0].product).toMatchObject(
       result.current.data![0],
     );
 
-    // press again to remove item from favorited products
-    fireEvent.press(firstProductItemFavoritePressable);
+    // press again to remove item from products in basket
+    fireEvent.press(firstProductItemBasketButton);
 
     expect(
       screen.queryByTestId('basket-icon-quantity-text-1'),
     ).not.toBeTruthy();
 
-    expect(productStore.current.favoritedProducts).toHaveLength(0);
+    expect(productStore.current.productsInBasket).toHaveLength(0);
   });
 });

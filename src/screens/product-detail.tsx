@@ -16,7 +16,10 @@ import Spacing from '../components/spacing';
 import useRefreshByUser from '../hooks/useRefreshByUser';
 import {RouteNames} from '../navigation/route-names';
 import {ProductDetailScreenProps} from '../navigation/types';
-import {useProductActions, useProductQuantity} from '../store/product';
+import {
+  useProductActions,
+  useProductInBasketQuantityById,
+} from '../store/product';
 import {COMMON_STYLES} from '../theme/common-styles';
 import {cutString} from '../utils/cut-string';
 import {getPriceText} from '../utils/get-price-text';
@@ -33,13 +36,13 @@ const ProductDetail: React.FC<Props> = ({navigation, route}) => {
   const {isRefetchingByUser, refetchByUser} = useRefreshByUser(refetch);
 
   const {
-    increaseFavoritedProductQuantity,
-    decreaseFavoritedProductQuantity,
-    addFavoriteProduct,
-    removeFavoritedProduct,
+    increaseProductQuantityInBasket,
+    decreaseProductQuantityInBasket,
+    addProductToBasket,
+    removeProductFromBasket,
   } = useProductActions();
 
-  const productQuantity = useProductQuantity(data?.id);
+  const productQuantity = useProductInBasketQuantityById(data?.id);
 
   React.useEffect(() => {
     if (data?.title) {
@@ -100,9 +103,9 @@ const ProductDetail: React.FC<Props> = ({navigation, route}) => {
                   if (data?.id) {
                     // item has not been added to basket yet
                     if (typeof productQuantity === 'undefined') {
-                      addFavoriteProduct(data);
+                      addProductToBasket(data);
                     } else {
-                      increaseFavoritedProductQuantity(data.id);
+                      increaseProductQuantityInBasket(data.id);
                     }
                   }
                 }}
@@ -110,9 +113,9 @@ const ProductDetail: React.FC<Props> = ({navigation, route}) => {
                   if (data?.id) {
                     // item has quantity of 1, means its time to remove the item from the basket
                     if (productQuantity === 1) {
-                      removeFavoritedProduct(data.id);
+                      removeProductFromBasket(data.id);
                     } else {
-                      decreaseFavoritedProductQuantity(data.id);
+                      decreaseProductQuantityInBasket(data.id);
                     }
                   }
                 }}
