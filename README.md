@@ -45,10 +45,12 @@ or for android
   
   
 ## Overview of product list screen
+
 <img src="./docs/product-list-screen-overview.gif"/>
 
 
-## Testing product list screen
+
+## Testing product list screen
 
 ```js
 import {NavigationContainer} from '@react-navigation/native';
