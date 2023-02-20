@@ -24,14 +24,14 @@ export const mswServer = setupServer(...handlers);
 const getAllProductsFailedHandler = rest.get(
   getAllProductsUrl,
   (_req, res, ctx) => {
-    return res(ctx.status(500), ctx.json(GET_ALL_PRODUCTS_MOCK_RESPONSE));
+    return res(ctx.status(500));
   },
 );
 
 const getProductByIdFailedHandler = rest.get(
   getProductByIdUrl,
   (_req, res, ctx) => {
-    return res(ctx.status(500), ctx.json(GET_PRODUCT_BY_ID_MOCK_RESPONSE));
+    return res(ctx.status(500));
   },
 );
 

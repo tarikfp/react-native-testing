@@ -39,8 +39,14 @@ const QuantityToggler: React.FC<Props> = ({
         <MaterialCommunityIcons name="minus" size={24} color="#fff" />
       </TouchableOpacity>
 
-      <Text testID="quantity-toggler-value" style={styles.quantityText}>
-        {quantity}
+      <Text
+        testID={
+          uniqueID
+            ? `quantity-toggler-value-${uniqueID}`
+            : 'quantity-toggler-value'
+        }
+        style={styles.quantityText}>
+        {quantity.toString()}
       </Text>
 
       <TouchableOpacity

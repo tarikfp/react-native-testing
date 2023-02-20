@@ -6,15 +6,16 @@ import {
 } from '@testing-library/react-native';
 import React from 'react';
 import {GET_ALL_PRODUCTS_MOCK_RESPONSE} from '../../../__mocks__/msw/mock-data';
-import {useFavoriteProducts} from '../../store/product';
+import {useProductsInBasket} from '../../store/product';
 import {getBasketTotalPrice} from '../../utils/get-basket-total-price';
 import {createReactQueryWrapper} from '../../utils/testing';
 import BasketScreen from '../basket';
 
-const increaseFavoritedProductQuantityMock = jest.fn();
-const decreaseFavoritedProductQuantityMock = jest.fn();
-const addFavoriteProductMock = jest.fn();
-const removeFavoritedProductMock = jest.fn();
+const increaseProductQuantityInBasketMock = jest.fn();
+const decreaseProductQuantityInBasketMock = jest.fn();
+const addProductToBasketMock = jest.fn();
+const removeProductFromBasketMock = jest.fn();
+
 const favoritedProducts = GET_ALL_PRODUCTS_MOCK_RESPONSE.map(product => ({
   product,
   quantity: Math.floor(Math.random() * 10) + 1,
@@ -22,12 +23,12 @@ const favoritedProducts = GET_ALL_PRODUCTS_MOCK_RESPONSE.map(product => ({
 
 jest.mock('../../store/product', () => ({
   useProductActions: () => ({
-    increaseFavoritedProductQuantity: increaseFavoritedProductQuantityMock,
-    decreaseFavoritedProductQuantity: decreaseFavoritedProductQuantityMock,
-    addFavoriteProduct: addFavoriteProductMock,
-    removeFavoritedProduct: removeFavoritedProductMock,
+    increaseProductQuantityInBasket: increaseProductQuantityInBasketMock,
+    decreaseProductQuantityInBasket: decreaseProductQuantityInBasketMock,
+    addProductToBasket: addProductToBasketMock,
+    removeProductFromBasket: removeProductFromBasketMock,
   }),
-  useFavoriteProducts: jest.fn(),
+  useProductsInBasket: jest.fn(),
 }));
 
 const navigateMock = jest.fn();
@@ -39,7 +40,7 @@ const component = <BasketScreen navigation={navigation} route={route} />;
 
 describe('Basket screen', () => {
   it('should display all basket list data correctly', async () => {
-    (useFavoriteProducts as jest.Mock).mockImplementation(
+    (useProductsInBasket as jest.Mock).mockImplementation(
       () => favoritedProducts,
     );
 
@@ -81,7 +82,7 @@ describe('Basket screen', () => {
   });
 
   it('should set navigation header right component if there is at least one item in the basket', async () => {
-    (useFavoriteProducts as jest.Mock).mockImplementation(
+    (useProductsInBasket as jest.Mock).mockImplementation(
       () => favoritedProducts,
     );
 
@@ -99,7 +100,7 @@ describe('Basket screen', () => {
   });
 
   it('should not display basket total price when there is no items in the basket', async () => {
-    (useFavoriteProducts as jest.Mock).mockImplementation(() => []);
+    (useProductsInBasket as jest.Mock).mockImplementation(() => []);
 
     render(component, {wrapper: createReactQueryWrapper});
 
@@ -109,7 +110,7 @@ describe('Basket screen', () => {
   });
 
   it('should display empty basket when there is no item in the basket', async () => {
-    (useFavoriteProducts as jest.Mock).mockImplementation(() => []);
+    (useProductsInBasket as jest.Mock).mockImplementation(() => []);
 
     render(component, {wrapper: createReactQueryWrapper});
 
@@ -117,7 +118,7 @@ describe('Basket screen', () => {
   });
 
   it('should increase quantity on pressing increase button', async () => {
-    (useFavoriteProducts as jest.Mock).mockImplementation(
+    (useProductsInBasket as jest.Mock).mockImplementation(
       () => favoritedProducts,
     );
 
@@ -125,13 +126,13 @@ describe('Basket screen', () => {
 
     fireEvent.press(screen.getByTestId(`increase-quantity-btn-1`));
 
-    expect(increaseFavoritedProductQuantityMock).toHaveBeenCalledWith(
+    expect(increaseProductQuantityInBasketMock).toHaveBeenCalledWith(
       favoritedProducts[0].product.id,
     );
   });
 
   it('should remove the product from the basket if quantity of the product equals to 1', async () => {
-    (useFavoriteProducts as jest.Mock).mockImplementation(() =>
+    (useProductsInBasket as jest.Mock).mockImplementation(() =>
       favoritedProducts.map(favoritedProduct => {
         // set first product quantity to 1
         if (favoritedProduct.product.id === 1) {
@@ -149,13 +150,13 @@ describe('Basket screen', () => {
 
     fireEvent.press(screen.getByTestId(`decrease-quantity-btn-1`));
 
-    expect(removeFavoritedProductMock).toHaveBeenCalledWith(
+    expect(removeProductFromBasketMock).toHaveBeenCalledWith(
       favoritedProducts[0].product.id,
     );
   });
 
   it('should decrease the quantity of the product if its greater than 1', async () => {
-    (useFavoriteProducts as jest.Mock).mockImplementation(() =>
+    (useProductsInBasket as jest.Mock).mockImplementation(() =>
       favoritedProducts.map(favoritedProduct => {
         // set first product quantity to 2
         if (favoritedProduct.product.id === 1) {
@@ -173,7 +174,7 @@ describe('Basket screen', () => {
 
     fireEvent.press(screen.getByTestId(`decrease-quantity-btn-1`));
 
-    expect(decreaseFavoritedProductQuantityMock).toHaveBeenCalledWith(
+    expect(decreaseProductQuantityInBasketMock).toHaveBeenCalledWith(
       favoritedProducts[0].product.id,
     );
   });

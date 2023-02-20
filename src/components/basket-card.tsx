@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
-import {FavoritedProduct} from '../store/product';
+import {ProductInBasket} from '../store/product';
 import {getWindowHeight, getWindowWidth} from '../utils/layout';
 import QuantityToggler from './quantity-toggler';
 
-type BasketCardProps = FavoritedProduct &
+type BasketCardProps = ProductInBasket &
   React.ComponentProps<typeof QuantityToggler> & {
     testID?: string;
     quantityTogglerUniqueID?: string;

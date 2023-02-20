@@ -5,13 +5,13 @@ import React from 'react';
 import BasketIcon from '../components/basket-icon';
 import CloseIcon from '../components/close-icon';
 import {BasketScreen, ProductDetailScreen, ProductListScreen} from '../screens';
-import {useFavoritedProductsCount} from '../store/product';
+import {useProductsInBasketCount} from '../store/product';
 import {RouteNames} from './route-names';
 
 const Stack = createNativeStackNavigator();
 
 export default function ProductStack() {
-  const favoritedProductsCount = useFavoritedProductsCount();
+  const favoritedProductsCount = useProductsInBasketCount();
 
   return (
     <Stack.Navigator

@@ -12,6 +12,7 @@ module.exports = {
       },
     ],
   },
+  testMatch: ['<rootDir>/src/**/?(*.)+(spec|test).[jt]s?(x)'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   collectCoverage: true,
   collectCoverageFrom: ['./src/screens/**/*.tsx', './src/store/**/*.ts'],

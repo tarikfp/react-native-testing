@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>12/12</span>
+                <span class='fraction'>0/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>9/9</span>
+                <span class='fraction'>0/9</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -99,14 +99,14 @@
 <a name='L34'></a><a href='#L34'>34</a>
 <a name='L35'></a><a href='#L35'>35</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -114,33 +114,33 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {FavoritedProduct} from './product';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {ProductInBasket} from './product';
 &nbsp;
-export const updateProductQuantity = (
-  favoritedProducts: Array&lt;FavoritedProduct&gt;,
+export const <span class="cstat-no" title="statement not covered" >updateProductQuantity = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(</span></span></span>
+  favoritedProducts: Array&lt;ProductInBasket&gt;,
   productId: number,
   updateType: 'increase' | 'decrease',
 ) =&gt; {
-  return favoritedProducts.map(favoritedProduct =&gt; {
-    if (favoritedProduct.product.id === productId) {
-      return {
+<span class="cstat-no" title="statement not covered" >  return favoritedProducts.map(<span class="fstat-no" title="function not covered" >favoritedProduct </span>=&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (favoritedProduct.product.id === productId) {</span>
+<span class="cstat-no" title="statement not covered" >      return {</span>
         ...favoritedProduct,
         quantity:
           updateType === 'increase'
@@ -148,22 +148,22 @@ export const updateProductQuantity = (
             : favoritedProduct.quantity - 1,
       };
     }
-    return favoritedProduct;
+<span class="cstat-no" title="statement not covered" >    return favoritedProduct;</span>
   });
 };
 &nbsp;
-export const increaseFavoritedProductQuantity = (
-  favoritedProducts: Array&lt;FavoritedProduct&gt;,
+export const <span class="cstat-no" title="statement not covered" >increaseFavoritedProductQuantity = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(</span></span></span>
+  favoritedProducts: Array&lt;ProductInBasket&gt;,
   productId: number,
 ) =&gt; {
-  return updateProductQuantity(favoritedProducts, productId, 'increase');
+<span class="cstat-no" title="statement not covered" >  return updateProductQuantity(favoritedProducts, productId, 'increase');</span>
 };
 &nbsp;
-export const decreaseFavoritedProductQuantity = (
-  favoritedProducts: Array&lt;FavoritedProduct&gt;,
+export const <span class="cstat-no" title="statement not covered" >decreaseFavoritedProductQuantity = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(</span></span></span>
+  favoritedProducts: Array&lt;ProductInBasket&gt;,
   productId: number,
 ) =&gt; {
-  return updateProductQuantity(favoritedProducts, productId, 'decrease');
+<span class="cstat-no" title="statement not covered" >  return updateProductQuantity(favoritedProducts, productId, 'decrease');</span>
 };
 &nbsp;</pre></td></tr></table></pre>
 
@@ -172,7 +172,7 @@ export const decreaseFavoritedProductQuantity = (
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-02-07T23:12:08.651Z
+                at 2023-02-20T17:13:57.050Z
             </div>
         <script src="../prettify.js"></script>
         <script>

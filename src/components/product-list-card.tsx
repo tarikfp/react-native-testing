@@ -8,10 +8,10 @@ import Spacing from './spacing';
 
 type Props = Product & {
   onPress: () => void;
-  isFavorited?: boolean;
-  onFavoritePress: () => void;
+  isInBasket?: boolean;
+  onAddToBasketPress: () => void;
   testID?: string;
-  favoritePressableTestID?: string;
+  basketButtonTestID?: string;
 };
 
 const ProductListCard: React.FC<Props> = ({
@@ -20,9 +20,9 @@ const ProductListCard: React.FC<Props> = ({
   price,
   rating,
   onPress,
-  onFavoritePress,
-  favoritePressableTestID,
-  isFavorited = false,
+  onAddToBasketPress,
+  basketButtonTestID,
+  isInBasket = false,
   testID,
 }) => {
   return (
@@ -30,13 +30,13 @@ const ProductListCard: React.FC<Props> = ({
       <Image style={styles.image} resizeMode="contain" source={{uri: image}} />
 
       <Pressable
-        testID={favoritePressableTestID}
+        testID={basketButtonTestID}
         style={styles.heartIcon}
-        onPress={onFavoritePress}>
+        onPress={onAddToBasketPress}>
         <MaterialCommunityIcons
           size={24}
-          color={isFavorited ? 'darkslateblue' : 'grey'}
-          name={isFavorited ? 'heart' : 'heart-outline'}
+          color={isInBasket ? 'darkslateblue' : 'grey'}
+          name={isInBasket ? 'heart' : 'heart-outline'}
         />
       </Pressable>
 

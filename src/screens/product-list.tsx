@@ -16,7 +16,7 @@ import Spacing from '../components/spacing';
 import useRefreshByUser from '../hooks/useRefreshByUser';
 import {RouteNames} from '../navigation/route-names';
 import {ProductListScreenProps} from '../navigation/types';
-import {useFavoriteProducts, useProductActions} from '../store/product';
+import {useProductActions, useProductsInBasket} from '../store/product';
 import {COMMON_STYLES} from '../theme/common-styles';
 
 type Props = ProductListScreenProps;
@@ -26,23 +26,22 @@ const ProductListScreen: React.FC<Props> = ({navigation}) => {
 
   const {isRefetchingByUser, refetchByUser} = useRefreshByUser(refetch);
 
-  const {addFavoriteProduct, removeFavoritedProduct} = useProductActions();
-  const favoritedProducts = useFavoriteProducts();
+  const {addProductToBasket, removeProductFromBasket} = useProductActions();
+  const productsInBasket = useProductsInBasket();
 
-  const onFavoriteProductPress = React.useCallback(
+  const onAddToBasketPress = React.useCallback(
     (product: Product) => () => {
-      // product is already favorited
       if (
-        favoritedProducts.find(
-          favoritedProduct => favoritedProduct.product.id === product.id,
+        productsInBasket.find(
+          productInBasket => productInBasket.product.id === product.id,
         )
       ) {
-        removeFavoritedProduct(product.id);
+        removeProductFromBasket(product.id);
       } else {
-        addFavoriteProduct(product);
+        addProductToBasket(product);
       }
     },
-    [addFavoriteProduct, favoritedProducts, removeFavoritedProduct],
+    [addProductToBasket, productsInBasket, removeProductFromBasket],
   );
 
   const onProductCardPress = React.useCallback(
@@ -66,13 +65,13 @@ const ProductListScreen: React.FC<Props> = ({navigation}) => {
       <ProductListCard
         {...product}
         testID={`product-list-card-${product.id}`}
-        favoritePressableTestID={`favorite-pressable-${product.id}`}
-        isFavorited={
-          typeof favoritedProducts.find(
-            favoritedProduct => favoritedProduct.product.id === product.id,
+        basketButtonTestID={`basket-button-${product.id}`}
+        isInBasket={
+          typeof productsInBasket.find(
+            productInBasket => productInBasket.product.id === product.id,
           ) !== 'undefined'
         }
-        onFavoritePress={onFavoriteProductPress(product)}
+        onAddToBasketPress={onAddToBasketPress(product)}
         onPress={onProductCardPress(product.id)}
       />
     );
@@ -93,7 +92,7 @@ const ProductListScreen: React.FC<Props> = ({navigation}) => {
       {isSuccess && (
         <FlatList<Product>
           data={data}
-          testID="product-list-scroll-view"
+          testID="product-list-flat-list"
           refreshControl={
             <RefreshControl
               refreshing={isRefetchingByUser}
@@ -107,7 +106,7 @@ const ProductListScreen: React.FC<Props> = ({navigation}) => {
           contentContainerStyle={styles.contentContainerStyle}
           showsVerticalScrollIndicator={false}
           keyExtractor={getKeyExtractor}
-          style={styles.root}
+          style={COMMON_STYLES.flex}
         />
       )}
     </SafeAreaView>
@@ -117,9 +116,6 @@ const ProductListScreen: React.FC<Props> = ({navigation}) => {
 export default ProductListScreen;
 
 const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-  },
   contentContainerStyle: {
     flexGrow: 1,
     padding: COMMON_STYLES.screenPadding,
