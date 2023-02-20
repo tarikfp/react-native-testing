@@ -1,4 +1,4 @@
-<div align="center"><h1>React Native Testing</h1></div> 
+# React Native Testing
 
 This app is a simple example of how to use React-Query for data fetching and Zustand for state management in a React Native application.
 
