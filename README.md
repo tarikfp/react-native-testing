@@ -48,7 +48,7 @@ or for android
 <img src="./docs/product-list-screen-overview.gif"/>
 
 
-<details><summary>Testing product list screen</summary>
+## Testing product list screen
 
 ```js
 import {NavigationContainer} from '@react-navigation/native';
@@ -209,6 +209,9 @@ describe('Product list screen', () => {
 
 ```
 
-</details>
+## Coverage 
+
+<img src="./docs/coverage-ss.png"/>
+
   
   
