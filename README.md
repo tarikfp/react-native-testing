@@ -1,6 +1,6 @@
 # React Native Testing
 
-This app is a simple example of how to use React-Query for data fetching and Zustand for state management in a React Native application.
+This app is a simple example of how to use/test React-Query for data fetching and Zustand for state management in a React Native application.
 
 It provides comprehensive and detailed examples to aid in the understanding of the testing process. The app uses following core packages: 
 
