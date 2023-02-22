@@ -108,9 +108,11 @@ describe('Product detail screen', () => {
       getPriceText(result.current.data!.price),
     );
 
-    expect(screen.getByTestId('quantity-toggler-value').props.children).toBe(
-      '0',
-    );
+    expect(
+      screen.getByTestId(
+        `quantity-toggler-value-${result.current.data?.id.toString()}`,
+      ).props.children,
+    ).toBe('0');
   });
 
   it('should have decrease quantity button disabled and should call addFavoriteProduct function in case product has not been added to basket yet', async () => {
@@ -127,8 +129,12 @@ describe('Product detail screen', () => {
 
     await waitForHook(() => result.current.isSuccess);
 
-    const increaseBtn = screen.getByTestId(`increase-quantity-btn`);
-    const decreaseBtn = screen.getByTestId(`decrease-quantity-btn`);
+    const increaseBtn = screen.getByTestId(
+      `increase-quantity-btn-${result.current.data?.id.toString()}`,
+    );
+    const decreaseBtn = screen.getByTestId(
+      `decrease-quantity-btn-${result.current.data?.id.toString()}`,
+    );
 
     fireEvent.press(decreaseBtn);
 
@@ -157,7 +163,9 @@ describe('Product detail screen', () => {
 
     await waitForHook(() => result.current.isSuccess);
 
-    const increaseBtn = screen.getByTestId(`increase-quantity-btn`);
+    const increaseBtn = screen.getByTestId(
+      `increase-quantity-btn-${result.current.data?.id.toString()}`,
+    );
 
     fireEvent.press(increaseBtn);
 
@@ -183,7 +191,9 @@ describe('Product detail screen', () => {
 
     await waitForHook(() => result.current.isSuccess);
 
-    const decreaseBtn = screen.getByTestId(`decrease-quantity-btn`);
+    const decreaseBtn = screen.getByTestId(
+      `decrease-quantity-btn-${result.current.data?.id.toString()}`,
+    );
 
     fireEvent.press(decreaseBtn);
 
@@ -209,7 +219,9 @@ describe('Product detail screen', () => {
 
     await waitForHook(() => result.current.isSuccess);
 
-    const decreaseBtn = screen.getByTestId(`decrease-quantity-btn`);
+    const decreaseBtn = screen.getByTestId(
+      `decrease-quantity-btn-${result.current.data?.id.toString()}`,
+    );
 
     fireEvent.press(decreaseBtn);
 
