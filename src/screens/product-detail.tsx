@@ -131,6 +131,7 @@ const ProductDetail: React.FC<Props> = ({navigation, route}) => {
       )}
 
       <Button
+        testID="product-detail-go-to-basket-btn"
         color="darkslateblue"
         title="Go to basket"
         onPress={() => navigation.navigate(RouteNames.basket)}
