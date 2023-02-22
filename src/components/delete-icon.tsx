@@ -8,7 +8,7 @@ type Props = {
 
 const DeleteIcon: React.FC<Props> = ({onPress}) => {
   return (
-    <Pressable onPress={onPress}>
+    <Pressable testID="basket-delete-icon" onPress={onPress}>
       <MaterialCommunityIcons
         color={'darkslateblue'}
         disabled

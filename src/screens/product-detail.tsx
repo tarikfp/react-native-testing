@@ -98,6 +98,7 @@ const ProductDetail: React.FC<Props> = ({navigation, route}) => {
               </Text>
               <QuantityToggler
                 style={styles.quantityToggler}
+                uniqueID={data?.id.toString()}
                 quantity={productQuantity ?? 0}
                 onIncreaseQuantityPress={() => {
                   if (data?.id) {
@@ -130,6 +131,7 @@ const ProductDetail: React.FC<Props> = ({navigation, route}) => {
       )}
 
       <Button
+        testID="product-detail-go-to-basket-btn"
         color="darkslateblue"
         title="Go to basket"
         onPress={() => navigation.navigate(RouteNames.basket)}

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Image, Pressable, StyleSheet, Text} from 'react-native';
+import {Dimensions, Image, Pressable, StyleSheet, Text} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Product} from '../api/product/types';
 import {getPriceText} from '../utils/get-price-text';
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     top: 8,
   },
   image: {
-    height: getWindowHeight(15),
+    height: getWindowHeight(Dimensions.get('window').height < 700 ? 12.5 : 15),
     width: getWindowWidth(35),
     marginTop: 6,
   },
