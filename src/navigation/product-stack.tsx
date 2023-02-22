@@ -48,6 +48,7 @@ export default function ProductStack() {
           headerLeft: headerLeftProps => (
             <HeaderBackButton
               {...headerLeftProps}
+              testID="basket-screen-header-left-btn"
               backImage={({tintColor}) => (
                 <CloseIcon onPress={navigation.goBack} color={tintColor} />
               )}

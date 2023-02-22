@@ -98,6 +98,7 @@ const ProductDetail: React.FC<Props> = ({navigation, route}) => {
               </Text>
               <QuantityToggler
                 style={styles.quantityToggler}
+                uniqueID={data?.id.toString()}
                 quantity={productQuantity ?? 0}
                 onIncreaseQuantityPress={() => {
                   if (data?.id) {
