@@ -9,7 +9,7 @@
     "start": "react-native start",
     "test": "jest",
     "e2e-build-ios-debug": "yarn run detox build --configuration ios.sim.debug",
-    "e2e-test-ios-debug": "yarn run detox test --configuration ios.android.debug",
+    "e2e-test-ios-debug": "yarn run detox test --configuration ios.sim.debug",
     "e2e-build-android-debug": "yarn run detox build --configuration android.emu.debug",
     "e2e-test-android-debug": "yarn run detox test --configuration android.emu.debug"
   },
