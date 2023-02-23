@@ -13,7 +13,7 @@ It provides comprehensive and detailed examples to aid in the understanding of t
 - msw (1.0.0)
 
 
-## ❓ I do not get why this repo exist 
+## ❓ I don't get why this repo exists 
 
 To have better context about the repo, you can start by reading this [compherensive article.](https://medium.com/gitconnected/testing-react-native-with-react-query-and-zustand-d957c2a40b73)
 
