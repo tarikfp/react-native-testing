@@ -1,5 +1,3 @@
-const {sleep} = require('../src/utils/sleep');
-
 describe('Example', () => {
   beforeAll(async () => {
     await device.launchApp({
@@ -24,19 +22,11 @@ describe('Example', () => {
 
     await element(by.id('product-list-flat-list')).scrollTo('top');
 
-    await sleep(200);
-
     await element(by.id('basket-button-1')).tap();
-
-    await sleep(200);
 
     await element(by.id('basket-button-3')).tap();
 
-    await sleep(200);
-
     await element(by.id('basket-icon')).tap();
-
-    await sleep(200);
 
     await waitFor(element(by.id('basket-card-1')))
       .toBeVisible()
