@@ -1,4 +1,5 @@
-# 🧪 React Native Testing 🛠️   
+<div align="center"><h1>🧪 React Native Testing 🛠️ </h1></div> 
+
 
 This app is a simple example of how to use/test React-Query for data fetching and Zustand for state management in a React Native application.
 
