@@ -92,6 +92,7 @@ const ProductListScreen: React.FC<Props> = ({navigation}) => {
       {isSuccess && (
         <FlatList<Product>
           data={data}
+          accessibilityLabel="product-list-flat-list"
           testID="product-list-flat-list"
           refreshControl={
             <RefreshControl

@@ -5,6 +5,7 @@
       "node",
       "detox",
       "@types/jest",
+      "@types/chai",
     ],
   },
   "exclude": [
