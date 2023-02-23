@@ -1,4 +1,4 @@
-# React Native Testing
+# 🧪 React Native Testing 🛠️   
 
 This app is a simple example of how to use/test React-Query for data fetching and Zustand for state management in a React Native application.
 
@@ -13,8 +13,23 @@ It provides comprehensive and detailed examples to aid in the understanding of t
 - msw (1.0.0)
 
 
+## ❓ I do not get why this repo exist 
 
-## Running locally
+To have better context about the repo, you can start by reading this [compherensive article.](https://medium.com/gitconnected/testing-react-native-with-react-query-and-zustand-d957c2a40b73)
+
+## 📚 Table of contents 
+
+*  [💻 Running locally](#-running-locally)
+*  [🧪 Running tests](#-running-tests)
+*  [👀 Overview of product list screen](#-overview-of-product-list-screen)
+*  [👀 Overview of product detail screen](#-overview-of-product-detail-screen)
+*  [👀 Overview of basket screen](#-overview-of-basket-screen)
+*  [🧪 Coverage](#-coverage)
+*  [🐞 Known issues](#-known-issues)
+
+
+
+## 💻 Running locally
 
 Install dependencies
 
@@ -35,7 +50,7 @@ or for android
 ```
 
 
-## Running tests
+## 🧪 Running tests
 
 ```bash
   yarn test
@@ -43,7 +58,7 @@ or for android
   
 ---
   
-## Overview of product list screen
+## 👀 Overview of product list screen
 
 <img src="./docs/product-list-screen-overview.gif"/>
 
@@ -213,7 +228,7 @@ describe('Product list screen', () => {
 
 </details>
 
-## Overview of product detail screen
+## 👀 Overview of product detail screen
 
 <img src="./docs/product-detail-overview.gif"/>
 
@@ -478,7 +493,7 @@ describe('Product detail screen', () => {
 
 </details>
 
-## Overview of basket screen
+## 👀 Overview of basket screen
 
 <img src="./docs/basket-screen-overview.gif"/>
 
@@ -677,12 +692,12 @@ describe('Basket screen', () => {
 
 
 
-## Coverage 
+## 🧪 Coverage 
 
 <img src="./docs/coverage-ss.png"/>
 
 
-## E2E Testing with Detox
+## 🤖 E2E Testing with Detox
 
 Android 
 
@@ -839,7 +854,7 @@ describe('Example', () => {
 
 
 
-## Known issues
+## 🐞 Known issues 
 - [e2e test with detox fails in iOS](https://github.com/wix/Detox/issues/3949)
   
   
