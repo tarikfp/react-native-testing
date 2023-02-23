@@ -1,31 +1,27 @@
 import React from 'react';
-
-import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
-import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
-import {QueryClient, QueryClientProvider} from 'react-query';
-import ErrorBoundary from './components/error-boundary';
-import ProductStack from './navigation/product-stack';
+import {Button, Text, View} from 'react-native';
 import {COMMON_STYLES} from './theme/common-styles';
 
-export const queryClient = new QueryClient();
+const Counter = () => {
+  const [counter, setCounter] = React.useState(0);
+
+  return (
+    <View style={COMMON_STYLES.flexCenter}>
+      <Button
+        testID="increase-btn"
+        onPress={() => setCounter(prev => prev + 1)}
+        title="Increase"
+      />
+      <Button
+        testID="decrease-btn"
+        onPress={() => setCounter(prev => prev - 1)}
+        title="Decrease"
+      />
+      <Text testID="count-text">Count: {counter}</Text>
+    </View>
+  );
+};
 
 export default function App() {
-  return (
-    <ErrorBoundary>
-      <QueryClientProvider client={queryClient}>
-        <GestureHandlerRootView style={COMMON_STYLES.flex}>
-          <SafeAreaProvider>
-            <NavigationContainer
-              theme={{
-                ...DefaultTheme,
-                colors: {...DefaultTheme.colors, primary: 'darkslateblue'},
-              }}>
-              <ProductStack />
-            </NavigationContainer>
-          </SafeAreaProvider>
-        </GestureHandlerRootView>
-      </QueryClientProvider>
-    </ErrorBoundary>
-  );
+  return <Counter />;
 }
