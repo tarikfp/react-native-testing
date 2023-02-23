@@ -6,6 +6,7 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "lint": "eslint .",
+    "clean": "react-native-clean-project",
     "start": "react-native start",
     "test": "jest",
     "e2e-build-ios-debug": "yarn run detox build --configuration ios.sim.debug",
@@ -48,6 +49,7 @@
     "metro-react-native-babel-preset": "0.73.7",
     "msw": "^1.0.0",
     "prettier": "^2.4.1",
+    "react-native-clean-project": "^4.0.1",
     "react-test-renderer": "^18.2.0",
     "ts-jest": "^29.0.5",
     "typescript": "^4.9.5"
