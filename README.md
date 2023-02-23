@@ -25,6 +25,7 @@ To have better context about the repo, you can start by reading this [compherens
 *  [👀 Overview of product detail screen](#-overview-of-product-detail-screen)
 *  [👀 Overview of basket screen](#-overview-of-basket-screen)
 *  [🧪 Coverage](#-coverage)
+*  [🧪 E2E Testing with Detox](#-e2e-testing-with-detox)
 *  [🐞 Known issues](#-known-issues)
 
 
@@ -699,7 +700,7 @@ describe('Basket screen', () => {
 
 ## 🤖 E2E Testing with Detox
 
-Android 
+### Android 
 
 https://user-images.githubusercontent.com/61876765/221006794-2ea6791f-c6fb-46b7-b6da-39164eea64a4.mp4
 
