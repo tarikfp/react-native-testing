@@ -681,5 +681,8 @@ describe('Basket screen', () => {
 
 <img src="./docs/coverage-ss.png"/>
 
+
+## Known issues
+- [e2e test with detox fails in iOS](https://github.com/wix/Detox/issues/3949)
   
   
