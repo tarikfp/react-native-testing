@@ -25,7 +25,7 @@ To have better context about the repo, you can start by reading this [compherens
 *  [👀 Overview of product detail screen](#-overview-of-product-detail-screen)
 *  [👀 Overview of basket screen](#-overview-of-basket-screen)
 *  [🧪 Coverage](#-coverage)
-*  [🧪 E2E Testing with Detox](#-e2e-testing-with-detox)
+*  [🤖 E2E Testing with Detox](#-e2e-testing-with-detox)
 *  [🐞 Known issues](#-known-issues)
 
 
