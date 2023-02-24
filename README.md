@@ -27,7 +27,6 @@ To have better context about the repo, you can start by reading this [compherens
 *  [👀 Overview of basket screen](#-overview-of-basket-screen)
 *  [🧪 Coverage](#-coverage)
 *  [🤖 E2E Testing with Detox](#-e2e-testing-with-detox)
-*  [🐞 Known issues](#-known-issues)
 
 
 
@@ -701,6 +700,13 @@ describe('Basket screen', () => {
 
 ## 🤖 E2E Testing with Detox
 
+### iOS
+
+https://user-images.githubusercontent.com/61876765/221060622-3dba3715-2776-47e2-9115-a26823f9016b.mp4
+
+
+
+
 ### Android 
 
 https://user-images.githubusercontent.com/61876765/221006794-2ea6791f-c6fb-46b7-b6da-39164eea64a4.mp4
@@ -708,7 +714,7 @@ https://user-images.githubusercontent.com/61876765/221006794-2ea6791f-c6fb-46b7-
 
 
 
-<details><summary>Testing complete app flow</summary>
+<details><summary>Code - Testing complete app flow</summary>
 
 ```js
 describe('Example', () => {
@@ -851,12 +857,8 @@ describe('Example', () => {
 
 ```
 
-
 </details>
 
 
 
-## 🐞 Known issues 
-- [e2e test with detox fails in iOS](https://github.com/wix/Detox/issues/3949)
-  
   
