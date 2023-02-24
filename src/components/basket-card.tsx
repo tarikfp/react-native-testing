@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import {ProductInBasket} from '../store/product';
+import {getPriceText} from '../utils/get-price-text';
 import {getWindowHeight, getWindowWidth} from '../utils/layout';
 import QuantityToggler from './quantity-toggler';
 
@@ -27,7 +28,7 @@ const BasketCard: React.FC<BasketCardProps> = ({
         <View style={styles.midContainer}>
           <Text numberOfLines={1}>{title}</Text>
           <Text style={styles.priceText} numberOfLines={1}>
-            $ {price}
+            {getPriceText(price)}
           </Text>
         </View>
       </View>

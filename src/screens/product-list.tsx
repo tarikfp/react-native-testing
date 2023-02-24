@@ -17,7 +17,7 @@ import useRefreshByUser from '../hooks/useRefreshByUser';
 import {RouteNames} from '../navigation/route-names';
 import {ProductListScreenProps} from '../navigation/types';
 import {useProductActions, useProductsInBasket} from '../store/product';
-import {COMMON_STYLES} from '../theme/common-styles';
+import {COMMON_STYLES} from '../styles/common-styles';
 
 type Props = ProductListScreenProps;
 

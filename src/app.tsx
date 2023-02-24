@@ -6,7 +6,7 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {QueryClient, QueryClientProvider} from 'react-query';
 import ErrorBoundary from './components/error-boundary';
 import ProductStack from './navigation/product-stack';
-import {COMMON_STYLES} from './theme/common-styles';
+import {COMMON_STYLES} from './styles/common-styles';
 
 export const queryClient = new QueryClient();
 

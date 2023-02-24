@@ -5,8 +5,9 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "lint": "eslint .",
     "clean": "react-native-clean-project",
+    "lint": "eslint .",
+    "build": "yarn run tsc",
     "start": "react-native start",
     "test": "jest",
     "e2e-build-ios-debug": "yarn run detox build --configuration ios.sim.debug",

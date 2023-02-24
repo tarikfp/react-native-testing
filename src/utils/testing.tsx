@@ -17,12 +17,3 @@ export const createReactQueryWrapper = ({
     <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
   );
 };
-
-export const createReactQueryTestingClient = () =>
-  new QueryClient({
-    defaultOptions: {
-      queries: {
-        retry: false,
-      },
-    },
-  });

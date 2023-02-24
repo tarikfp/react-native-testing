@@ -24,3 +24,9 @@ jobs:
       run: yarn install
     - name: Run tests
       run: yarn test --updateSnapshot --detectOpenHandles
+    - name: Run yarn lint
+      run: |
+        yarn lint
+    - name: Run yarn tsc
+      run: |
+        yarn build      

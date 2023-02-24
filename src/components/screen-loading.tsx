@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {ActivityIndicator, View} from 'react-native';
-import {COMMON_STYLES} from '../theme/common-styles';
+import {COMMON_STYLES} from '../styles/common-styles';
 
 const ScreenLoading: React.FC = () => {
   return (

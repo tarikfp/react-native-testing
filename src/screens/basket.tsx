@@ -16,7 +16,7 @@ import {
   useProductActions,
   useProductsInBasket,
 } from '../store/product';
-import {COMMON_STYLES} from '../theme/common-styles';
+import {COMMON_STYLES} from '../styles/common-styles';
 import {getBasketTotalPrice} from '../utils/get-basket-total-price';
 import {getWindowHeight} from '../utils/layout';
 
