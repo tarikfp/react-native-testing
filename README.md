@@ -861,7 +861,7 @@ describe('Example', () => {
 </details>
 
 ## 🐞 Known issues 
-- [e2e test with detox fails in iOS](https://github.com/wix/Detox/issues/3949)
+- [e2e test with detox fails in iOS when fabric is enabled](https://github.com/wix/Detox/issues/3949)
 
 
 
